@@ -109,3 +109,10 @@
     font-size: x-large;
     height: 58px;
   }
+
+  .error-message {
+    color: rgb(98, 0, 255);
+    text-align: left; /* Add this line */
+    /* Add any other styling you want for the error message */
+  }
+  
