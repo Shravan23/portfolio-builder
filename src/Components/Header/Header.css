@@ -1,0 +1,32 @@
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+  }
+  
+  
+  .logo img {
+    max-width: 100%;
+    max-height: 46px; /* Adjust the max height as needed */
+    border-radius: 5px;
+  }
+  
+  .header-button {
+    display: flex;
+    gap: 20px; /* Add space between buttons */
+  }
+  
+  button {
+    background: rgb(245, 245, 248); /* Blue background color */
+    color: blue; /* White text color */
+    padding: 10px 18px; /* Add padding for better appearance */
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+    height: 45px;
+    font-size: 20px;
+  }
+  
+  
