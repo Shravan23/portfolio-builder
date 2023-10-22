@@ -1,41 +1,103 @@
-import React,{useState } from 'react'
-import './Login.css'
+import React, { useState } from 'react';
+import './Login.css';
 
-import user_icon from '../Assets/person.png'
-import email_icon from '../Assets/email.png'
-import password_icon from '../Assets/password.png'
+import user_icon from '../Assets/person.png';
+import email_icon from '../Assets/email.png';
+import password_icon from '../Assets/password.png';
 
 const Login = () => {
-    const[action, setAction] = useState("Login");
-    return (
-        <div className='container'>
-            <div className="header">
-                <div className="text">{action}</div>
-                <div className="underline"></div>
-            </div>
-            <div className="inputs">
-                {action==="Login"?<div></div>:<div className="input">
-                    <img src={user_icon} alt="" />
-                    <input type="text" placeholder="Name" />
-                </div>}
-                
-                <div className="input">
-                    <img src={email_icon} alt="" />
-                    <input type="email" placeholder="Email-Id"/>
-                </div>
-                <div className="input">
-                    <img src={password_icon} alt="" />
-                    <input type="password" placeholder="Password"/>
-                </div>
-            </div>
-            {action==="Sign Up"?<div></div>:<div className="forgot-password">Lost Password? <span>Click Here!</span></div>}
-            
-            <div className="submit-container">
-             <div className={action==="Login"?"submit gray":"submit"} onClick={()=>{setAction("Sign Up")}}>Sign Up</div>
-             <div className={action=="Sign Up"?"submit gray":"submit"}onClick={()=>{setAction("Login")}}>Login</div>
-            </div>
+  const [action, setAction] = useState("Login");
+  const [formData, setFormData] = useState({
+    email: "",
+    password: ""
+  });
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value
+    });
+
+    // Handle email validation
+    if (name === "email") {
+        setEmailError(value.trim() === "" ? "" : validateEmail(value) ? "" : "Invalid Email");
+    }
+
+    // Handle password validation
+    if (name === "password") {
+        setPasswordError(value.trim() === "" ? "" : validatePassword(value) ? "" : "Invalid Password");
+    }
+  };
+
+  const handleLogin = () => {
+    if (formData.email.trim() === "") {
+        setEmailError("Email is required");
+        return;
+      }
+    
+      // Check for empty password
+      if (formData.password.trim() === "") {
+        setPasswordError("Password is required");
+        return;
+      }
+    // Convert formData to JSON format and send it to the server or perform any other action
+    const jsonData = JSON.stringify(formData);
+    console.log(jsonData); // You can send jsonData to your server
+
+    // Validate the email and password fields
+    if (!validateEmail(formData.email)) {
+      setEmailError("Invalid Email");
+      return;
+    }
+
+    if (!validatePassword(formData.password)) {
+      setPasswordError("Invalid Password");
+      return;
+    }
+
+    if (emailError || passwordError) {
+        return;
+      }
+
+  };
+
+  const validateEmail = (email) => {
+    // Regular expression to validate email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const validatePassword = (password) => {
+    // Password should be at least 8 characters long and should not contain spaces
+    return password.length >= 8 && !password.includes(' ');
+  };
+
+  return (
+    <div className='container-login'>
+      <div className="header-Login">
+        <div className="text">{action}</div>
+        <div className="underline"></div>
+      </div>
+      <div className="inputs">
+          <div className="input">
+          <img src={email_icon} alt="" />
+          <input type="email" name="email" placeholder="Email-Id" value={formData.email} onChange={handleInputChange} />
+          {emailError && <div className="error-message">{emailError}</div>}
+          </div> 
+        <div className="input">
+          <img src={password_icon} alt="" />
+          <input type="password" name="password" placeholder="Password" value={formData.password} onChange={handleInputChange} />
+          {passwordError && <div className="error-message">{passwordError}</div>}
         </div>
-    );
+        <div className="login-button">
+          <button className="btn" onClick={handleLogin}>Login</button>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default Login;
