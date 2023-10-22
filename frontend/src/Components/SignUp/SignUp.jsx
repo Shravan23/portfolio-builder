@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './SignUp.css';
 
 import user_icon from '../Assets/person.png';
@@ -7,14 +7,116 @@ import password_icon from '../Assets/password.png';
 
 const SignUp = () => {
   const [action, setAction] = useState("SignUp");
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: ""
+  });
   const [firstNameError, setFirstNameError] = useState("");
   const [lastNameError, setLastNameError] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
+  const [signUpError, setSignUpError] = useState("");
+
+  const hideErrorMessages = () => {
+    setFirstNameError("");
+    setLastNameError("");
+    setEmailError("");
+    setPasswordError("");
+    setSignUpError("");
+  };
+
+  // Effect to trigger error message hiding after 5 seconds
+  useEffect(() => {
+    const timer = setTimeout(hideErrorMessages, 1500);
+    return () => clearTimeout(timer);
+  }, [firstNameError, lastNameError, emailError, passwordError, signUpError]);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value
+    });
+
+    if (name === "firstName") {
+      setFirstNameError(value.trim() === "" ? "" : validateName(value) ? "" : "Only alphabets allowed");
+    }
+    if (name === "lastName") {
+      setLastNameError(value.trim() === "" ? "" : validateName(value) ? "" : "Only alphabets allowed");
+    }
+    if (name === "email") {
+      setEmailError(value.trim() === "" ? "" : validateEmail(value) ? "" : "Invalid Email Format");
+    }
+    if (name === "password") {
+      setPasswordError(value.trim() === "" ? "" : validatePassword(value) ? "" : "Password must have atleast -[one cap, one dig, one spec]");
+    }
+  };
+
+  const handleSignUp = () => {
+    // let hasError = false;
+    if (
+        formData.firstName.trim() === "" &&
+        formData.lastName.trim() === "" &&
+        formData.email.trim() === "" &&
+        formData.password.trim() === ""
+      ) {
+        setSignUpError("Please fill in all the inputs.");
+        return;
+      } 
+    setSignUpError("");
+    let hasError = false;
+
+    if (formData.firstName.trim() === "") {
+      setFirstNameError("First Name is required");
+      hasError = true;
+    } else if (!validateName(formData.firstName)) {
+      setFirstNameError("Invalid First Name");
+      hasError = true;
+    }
+  
+    if (formData.lastName.trim() === "") {
+      setLastNameError("Last Name is required");
+      hasError = true;
+    } else if (!validateName(formData.lastName)) {
+      setLastNameError("Invalid Last Name");
+      hasError = true;
+    }
+  
+    if (formData.email.trim() === "") {
+      setEmailError("Email is required");
+      hasError = true;
+    } else if (!validateEmail(formData.email)) {
+      setEmailError("Invalid Email");
+      hasError = true;
+    }
+  
+    if (formData.password.trim() === "") {
+      setPasswordError("Password is required");
+      hasError = true;
+    } else if (!validatePassword(formData.password)) {
+      setPasswordError("Invalid Password");
+      hasError = true;
+    }
+  
+    if (hasError) {
+      return;
+    }
+  
+    setSignUpError(""); // Reset any previous sign-up error
+    // You can send the form data to your server or perform other actions here
+    console.log("Form data:", formData);
+  
+    // Clear the input fields
+    setFormData({
+      firstName: "",
+      lastName: "",
+      email: "",
+      password: ""
+    });
+  };
+  
 
   const validateName = (name) => {
     const nameRegex = /^[A-Za-z]+$/;
@@ -27,71 +129,12 @@ const SignUp = () => {
   };
 
   const validatePassword = (password) => {
-    return password.length >= 8 && !password.includes(' ');
-  };
-
-  const convertToJSON = () => {
-    const formDataJSON = {
-      firstName: firstName,
-      lastName: lastName,
-      email: email,
-      password: password,
-    };
-    return JSON.stringify(formDataJSON);
-  };
-
-  const handleFirstNameChange = (e) => {
-    const value = e.target.value;
-    setFirstName(value);
-    setFirstNameError(value.trim() === "" ? "" : validateName(value) ? "" : "Invalid First Name");
-  };
-
-  const handleLastNameChange = (e) => {
-    const value1 = e.target.value;
-    setLastName(value1);
-    setLastNameError(value1.trim() === "" ? "" : validateName(value1) ? "" : "Invalid Last Name");
-  };
-
-  const handleEmailChange = (e) => {
-    const value = e.target.value;
-    setEmail(value);
-    setEmailError(value.trim() === "" ? "" : validateEmail(value) ? "" : "Invalid Email");
-  };
-
-  const handlePasswordChange = (e) => {
-    const value = e.target.value;
-    setPassword(value);
-    setPasswordError(value.trim() === "" ? "" : validatePassword(value) ? "" : "Invalid Password");
-  };
-
-  const handleSignUp = () => {
-    // Validate the input fields
-    if (!validateName(firstName)) {
-      setFirstNameError("Invalid First Name");
-    }
-    if (!validateName(lastName)) {
-      setLastNameError("Invalid Last Name");
-    }
-    if (!validateEmail(email)) {
-      setEmailError("Invalid Email");
-    }
-    if (!validatePassword(password)) {
-      setPasswordError("Invalid Password");
-    }
-
-    if (firstNameError || lastNameError || emailError || passwordError) {
-      return;
-    }
-
-    // Convert form data to JSON format
-    const jsonData = convertToJSON();
-    console.log(jsonData);
-
-    // You can send the JSON data to your server or perform other actions with it.
+    const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
+    return passwordRegex.test(password);
   };
 
   return (
-    <div className='container-signup'>
+    <div className="container-signup">
       <div className="header-signup">
         <div className="text">{action}</div>
         <div className="underline"></div>
@@ -101,45 +144,51 @@ const SignUp = () => {
           <img src={user_icon} alt="" />
           <input
             type="text"
+            name="firstName"
             placeholder="First Name"
-            value={firstName}
-            onChange={handleFirstNameChange}
+            value={formData.firstName}
+            onChange={handleInputChange}
           />
-          {firstNameError && <div className="error-message">{firstNameError}</div>}
         </div>
+        {firstNameError && <div className="error-message">{firstNameError}</div>}
 
         <div className="input">
           <img src={user_icon} alt="" />
           <input
             type="text"
+            name="lastName"
             placeholder="Last Name"
-            value={lastName}
-            onChange={handleLastNameChange}
+            value={formData.lastName}
+            onChange={handleInputChange}
           />
-          {lastNameError && <div className="error-message">{lastNameError}</div>}
         </div>
+        {lastNameError && <div className="error-message">{lastNameError}</div>}
 
         <div className="input">
           <img src={email_icon} alt="" />
           <input
             type="email"
+            name="email"
             placeholder="Email-Id"
-            value={email}
-            onChange={handleEmailChange}
+            value={formData.email}
+            onChange={handleInputChange}
           />
-          {emailError && <div className="error-message">{emailError}</div>}
         </div>
+        {emailError && <div className="error-message">{emailError}</div>}
 
         <div className="input">
           <img src={password_icon} alt="" />
           <input
             type="password"
+            name="password"
             placeholder="Password"
-            value={password}
-            onChange={handlePasswordChange}
+            value={formData.password}
+            onChange={handleInputChange}
           />
-          {passwordError && <div className="error-message">{passwordError}</div>}
         </div>
+        {passwordError && <div className="error-message">{passwordError}</div>}
+        {signUpError && <div className="error-message">{signUpError}</div>}
+
         <div className="login-button">
           <button className="btn" onClick={handleSignUp}>
             SignUp

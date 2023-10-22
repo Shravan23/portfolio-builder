@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Login.css';
 
 import user_icon from '../Assets/person.png';
@@ -13,6 +13,19 @@ const Login = () => {
   });
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
+  const [loginError, setLoginError] = useState("");
+
+  const hideErrorMessages = () => {
+    setEmailError("");
+    setPasswordError("");
+    setLoginError("");
+  };
+
+  // Effect to trigger error message hiding after 1500 seconds
+  useEffect(() => {
+    const timer = setTimeout(hideErrorMessages, 1000);
+    return () => clearTimeout(timer);
+  }, [emailError, passwordError, loginError]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -23,16 +36,23 @@ const Login = () => {
 
     // Handle email validation
     if (name === "email") {
-        setEmailError(value.trim() === "" ? "" : validateEmail(value) ? "" : "Invalid Email");
+        setEmailError(value.trim() === "" ? "" : validateEmail(value) ? "" : "Invalid Email Format");
     }
 
     // Handle password validation
     if (name === "password") {
-        setPasswordError(value.trim() === "" ? "" : validatePassword(value) ? "" : "Invalid Password");
+        setPasswordError(value.trim() === "" ? "" : validatePassword(value) ? "" : "Password must have atleast -[one cap, one dig, one spec]");
     }
   };
 
   const handleLogin = () => {
+    if (formData.email.trim() === "" && formData.password.trim() === "") {
+        setLoginError("Please fill in the inputs.");
+        return;
+      } else {
+        setLoginError(""); // Reset login error when other conditions are met
+      }
+
     if (formData.email.trim() === "") {
         setEmailError("Email is required");
         return;
@@ -43,9 +63,6 @@ const Login = () => {
         setPasswordError("Password is required");
         return;
       }
-    // Convert formData to JSON format and send it to the server or perform any other action
-    const jsonData = JSON.stringify(formData);
-    console.log(jsonData); // You can send jsonData to your server
 
     // Validate the email and password fields
     if (!validateEmail(formData.email)) {
@@ -58,9 +75,15 @@ const Login = () => {
       return;
     }
 
-    if (emailError || passwordError) {
-        return;
-      }
+    
+    const jsonData = JSON.stringify(formData);
+    console.log(jsonData);
+    setFormData({
+        email: "",
+        password: ""
+    });
+    setEmailError("");
+    setPasswordError("");
 
   };
 
@@ -71,8 +94,8 @@ const Login = () => {
   };
 
   const validatePassword = (password) => {
-    // Password should be at least 8 characters long and should not contain spaces
-    return password.length >= 8 && !password.includes(' ');
+    const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
+    return passwordRegex.test(password);
   };
 
   return (
@@ -85,13 +108,15 @@ const Login = () => {
           <div className="input">
           <img src={email_icon} alt="" />
           <input type="email" name="email" placeholder="Email-Id" value={formData.email} onChange={handleInputChange} />
-          {emailError && <div className="error-message">{emailError}</div>}
           </div> 
+          {emailError && <div className="error-message">{emailError}</div>}
         <div className="input">
           <img src={password_icon} alt="" />
           <input type="password" name="password" placeholder="Password" value={formData.password} onChange={handleInputChange} />
+          </div>
           {passwordError && <div className="error-message">{passwordError}</div>}
-        </div>
+          {loginError && <div className="error-message">{loginError}</div>}
+        {/* </div> */}
         <div className="login-button">
           <button className="btn" onClick={handleLogin}>Login</button>
         </div>
