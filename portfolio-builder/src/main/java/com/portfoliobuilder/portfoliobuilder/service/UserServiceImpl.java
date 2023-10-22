@@ -1,16 +1,17 @@
 package com.portfoliobuilder.portfoliobuilder.service;
 
-import com.portfoliobuilder.portfoliobuilder.config.SecurityConfig;
 import com.portfoliobuilder.portfoliobuilder.dto.LoginDto;
 import com.portfoliobuilder.portfoliobuilder.dto.UserDto;
 import com.portfoliobuilder.portfoliobuilder.models.User;
 import com.portfoliobuilder.portfoliobuilder.repository.UserRepository;
 import com.portfoliobuilder.portfoliobuilder.util.LoginMessage;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
+import java.util.ArrayList;
 
 @Service
 public class UserServiceImpl implements  UserService{
@@ -21,6 +22,9 @@ public class UserServiceImpl implements  UserService{
     PasswordEncoder passwordEncoder;
     @Override
     public String addUser(UserDto userDto) {
+        if (repository.findByEmail(userDto.getEmail()) != null) {
+            return "Email already exists";
+        }
         User user = new User(
                 userDto.getId(),
                 userDto.getFirstName(),
@@ -34,19 +38,11 @@ public class UserServiceImpl implements  UserService{
 
     @Override
     public LoginMessage loginUser(LoginDto loginDto) {
-        String msg = "";
         User user = repository.findByEmail(loginDto.getEmail());
-        if(user!=null) {
-            String password = loginDto.getPassword();
-            String encodedPassword = user.getPassword();
-            Boolean isVallid = passwordEncoder.matches(password,encodedPassword);
-            if(isVallid) {
-                Optional<User> validUser = repository.findByEmailAndPassword(loginDto.getEmail(), encodedPassword);
-                if(validUser.isPresent()) {
-                    return new LoginMessage("Login Success", true);
-                } else {
-                    return new LoginMessage("Login Failed", false);
-                }
+        if (user != null) {
+            boolean isValid = passwordEncoder.matches(loginDto.getPassword(), user.getPassword());
+            if (isValid) {
+                return new LoginMessage("Login Success", true);
             } else {
                 return new LoginMessage("Password Wrong", false);
             }
@@ -54,4 +50,6 @@ public class UserServiceImpl implements  UserService{
             return new LoginMessage("Email doesn't exist", false);
         }
     }
+
+
 }
