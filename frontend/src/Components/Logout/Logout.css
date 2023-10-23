@@ -1,0 +1,52 @@
+/* Logout.css */
+.page-container {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #c3bcf3; /* Grey background color */
+    color: #000000; /* Black text color */
+    font-size: 20px;
+    font-weight: 100;
+
+  }
+  
+  .logout-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+  
+  .file-upload-container {
+    text-align: center;
+    padding: 20px;
+    border-radius: 5px;
+    width: 300px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Add margins to the input and button for spacing */
+  input[type="file"] {
+    margin: 10px 0;
+  }
+  
+  button {
+    margin: 10px 0;
+    background-color: #007bff; /* Blue button background color */
+    color: #fff; /* White button text color */
+    padding: 10px 10px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+  }
+  
+  p {
+    margin: 10px 0;
+  }
+  

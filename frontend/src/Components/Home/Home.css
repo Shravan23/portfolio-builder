@@ -1,0 +1,105 @@
+
+body {    
+    height: 150vh;
+}
+  
+.home-container {
+  display: flex;
+  justify-content: space-between; 
+  padding-top: 100px;
+ 
+}
+
+.carousel {
+margin-top: 20px;
+
+}
+
+.carousel-item {
+text-align: center;
+}
+
+.carousel-control-prev{
+    margin: 7em;
+}
+
+.carousel-control-next{
+    margin: 7em;
+}
+.carousel-caption {
+color: rgb(180, 180, 11);
+border-radius: 5px;
+}
+
+.carousel-item img {
+max-width: 100%; 
+max-height: 300px; 
+margin: 0 auto;
+}
+
+
+.carousel-caption p {
+font-size: 13px;
+color: #000;
+}
+
+
+.content {
+    width: 70%; 
+    color: white;
+    margin-left: 400px;
+    margin-top: 70px;
+    margin-bottom: 20px; 
+  }
+  
+  .carousel-container {
+    width: 10%; 
+    margin-right: 10px; 
+  }
+  
+  /* Home.css */
+.carousel-container {
+    float: right;
+    width: 70%; /* Adjust the width as needed */
+  }
+  
+  .text-box {
+    float: right;
+    width: 30%; /* Adjust the width as needed */
+    background-color: #f0f0f0; /* Grey background color */
+    padding: 20px;
+    border-radius: 5px;
+    margin-left: 20px; /* Add some margin between the carousel and text box */
+    font-size: 25px;
+    font-weight: 200;
+    color: rgb(18, 17, 17);
+    background-color: linear-gradient(to top, #995dc7 10%, #f6f3ff 100%);
+    /* background-color: #e3cfdd; */
+  }
+  
+  /* Home.css */
+  .text-box p {
+    color: #000; /* Black text color */
+    font-size: 24px; /* Adjust the font size as needed */
+    white-space: nowrap;
+    overflow: hidden;
+    animation: typing 3s steps(30, end), blink-caret 0.5s step-end infinite;
+  }
+  
+  @keyframes typing {
+    0% {
+      width: 0;
+    }
+    100% {
+      width: 100%;
+    }
+  }
+  
+  @keyframes blink-caret {
+    from, to {
+      border-color: transparent;
+    }
+    50% {
+      border-color: #000;
+    }
+  }
