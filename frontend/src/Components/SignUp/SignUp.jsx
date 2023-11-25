@@ -189,8 +189,8 @@ const SignUp = () => {
         {passwordError && <div className="error-message">{passwordError}</div>}
         {signUpError && <div className="error-message">{signUpError}</div>}
 
-        <div className="login-button">
-          <button className="btn" onClick={handleSignUp}>
+        <div className="signup-button">
+          <button onClick={handleSignUp}>
             SignUp
           </button>
         </div>

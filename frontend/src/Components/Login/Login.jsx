@@ -21,7 +21,6 @@ const Login = () => {
     setLoginError("");
   };
 
-  // Effect to trigger error message hiding after 1500 seconds
   useEffect(() => {
     const timer = setTimeout(hideErrorMessages, 1000);
     return () => clearTimeout(timer);
@@ -117,8 +116,8 @@ const Login = () => {
           {passwordError && <div className="error-message">{passwordError}</div>}
           {loginError && <div className="error-message">{loginError}</div>}
         {/* </div> */}
-        <div className="login-button">
-          <button className="btn" onClick={handleLogin}>Login</button>
+        <div className="login-button" style={{ textAlign: 'center', marginTop: '20px' }}>
+          <button onClick={handleLogin}>Login</button>
         </div>
       </div>
     </div>
