@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './SignUp.css';
 
 import user_icon from '../Assets/person.png';
@@ -6,6 +7,7 @@ import email_icon from '../Assets/email.png';
 import password_icon from '../Assets/password.png';
 
 const SignUp = () => {
+  const navigate = useNavigate();
   const [action, setAction] = useState("SignUp");
   const [formData, setFormData] = useState({
     firstName: "",
@@ -50,23 +52,22 @@ const SignUp = () => {
       setEmailError(value.trim() === "" ? "" : validateEmail(value) ? "" : "Invalid Email Format");
     }
     if (name === "password") {
-      setPasswordError(value.trim() === "" ? "" : validatePassword(value) ? "" : "Password must have atleast -[one cap, one dig, one spec]");
+      setPasswordError(value.trim() === "" ? "" : validatePassword(value) ? "" : "Password must have at least -[one cap, one dig, one spec]");
     }
   };
 
   const handleSignUp = () => {
-    // let hasError = false;
-    if (
-        formData.firstName.trim() === "" &&
-        formData.lastName.trim() === "" &&
-        formData.email.trim() === "" &&
-        formData.password.trim() === ""
-      ) {
-        setSignUpError("Please fill in all the inputs.");
-        return;
-      } 
-    setSignUpError("");
     let hasError = false;
+
+    if (
+      formData.firstName.trim() === "" &&
+      formData.lastName.trim() === "" &&
+      formData.email.trim() === "" &&
+      formData.password.trim() === ""
+    ) {
+      setSignUpError("Please fill in all the inputs.");
+      return;
+    }
 
     if (formData.firstName.trim() === "") {
       setFirstNameError("First Name is required");
@@ -75,7 +76,7 @@ const SignUp = () => {
       setFirstNameError("Invalid First Name");
       hasError = true;
     }
-  
+
     if (formData.lastName.trim() === "") {
       setLastNameError("Last Name is required");
       hasError = true;
@@ -83,7 +84,7 @@ const SignUp = () => {
       setLastNameError("Invalid Last Name");
       hasError = true;
     }
-  
+
     if (formData.email.trim() === "") {
       setEmailError("Email is required");
       hasError = true;
@@ -91,7 +92,7 @@ const SignUp = () => {
       setEmailError("Invalid Email");
       hasError = true;
     }
-  
+
     if (formData.password.trim() === "") {
       setPasswordError("Password is required");
       hasError = true;
@@ -99,15 +100,15 @@ const SignUp = () => {
       setPasswordError("Invalid Password");
       hasError = true;
     }
-  
+
     if (hasError) {
       return;
     }
-  
+
     setSignUpError(""); // Reset any previous sign-up error
     // You can send the form data to your server or perform other actions here
     console.log("Form data:", formData);
-  
+
     // Clear the input fields
     setFormData({
       firstName: "",
@@ -115,8 +116,15 @@ const SignUp = () => {
       email: "",
       password: ""
     });
+
+    // Redirect to the ResumeUpload page
+    navigate('/ResumeUpload');
   };
-  
+
+  const handleTestButtonClick = () => {
+    // Navigate to the SimpleForm page
+    navigate('/SimpleForm');
+  };
 
   const validateName = (name) => {
     const nameRegex = /^[A-Za-z]+$/;
@@ -194,6 +202,13 @@ const SignUp = () => {
             SignUp
           </button>
         </div>
+      </div>
+
+      {/* Test button for navigation */}
+      <div className="test-button">
+        <button className="btn" onClick={handleTestButtonClick}>
+          Test
+        </button>
       </div>
     </div>
   );
