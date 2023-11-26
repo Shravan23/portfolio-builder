@@ -9,7 +9,9 @@ const Header = () => {
   return (
     <div className="header-top">
       <div className="logo">
+      <Link to="/">
         <img src={logo} alt="genie Logo" />
+      </Link>
       </div>
       <div className="header-button">
         <Link to="/login" className={location.pathname === '/login' ? 'active' : ''}>
