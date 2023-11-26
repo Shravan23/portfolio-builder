@@ -1,11 +1,13 @@
 // SimpleForm.js
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Add this line
 import ResumeUpload from './ResumeUpload';
 import PersonalDetailsPage from './PersonalDetailsPage';
 import WorkExperiencePage from './WorkExperiencePage';
 import OtherDetailsPage from './OtherDetailsPage';
 
 function SimpleForm() {
+  const navigate = useNavigate(); // Add this line
   const [currentPage, setCurrentPage] = useState(1);
   const [formData, setFormData] = useState({});
   const [summaryDetails, setSummaryDetails] = useState('');

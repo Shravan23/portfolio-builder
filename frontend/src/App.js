@@ -6,6 +6,7 @@ import SignupPage from './Components/SignUp/SignUp'; // Import your Signup page 
 import HomePage from './Components/Home/Home';
 import './App.css';
 import LogoutPage from './Components/Logout/Logout'
+import SimpleForm from './components1/SimpleForm'
 
 // function App() {
 //   return (
@@ -27,7 +28,7 @@ function App() {
     <Router>
       <div className="App">
 
-        <LogoutPage />
+        {/* <LogoutPage /> */}
 
         <Header />
         <Routes>
