@@ -6,7 +6,7 @@ import Links from './Links';
 
 const OtherDetailsPage = ({ images, projectsData, linksData, onImagesChange, onProjectsChange, onLinksChange, onSubmit }) => {
   return (
-    <div style={{ marginLeft: '114px', marginTop: '20px' }}>
+    <div>
       <Images images={images} setImages={onImagesChange} />
       <Projects projectsData={projectsData} setProjectsData={onProjectsChange} />
       <Links linksData={linksData} setLinksData={onLinksChange} />
