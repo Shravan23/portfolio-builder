@@ -1,0 +1,43 @@
+/* Personaldetails.css */
+
+.personal-details-container {
+    margin-top: 20px;
+    font-size: 20px;
+    margin-left: 23px;
+  }
+  
+  .contact-label {
+    margin-right: 20px; /* Adjust the value as needed */
+  }
+  
+  .summary-container {
+    margin-top: 20px;
+  }
+  
+  .education-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+  }
+  
+  .education-item {
+    margin-bottom: 20px;
+  }
+  
+  .education-label {
+    border-radius: 4px;
+    background-color: #d5d1dd;
+    color: white;
+    padding: 4px;
+    cursor: pointer;
+  }
+  
+  .add-education-button {
+    border-radius: 6px;
+    background-color: #7349c2;
+    color: white;
+    padding: 8px;
+    cursor: pointer;
+    width: 20%;
+  }
+  
