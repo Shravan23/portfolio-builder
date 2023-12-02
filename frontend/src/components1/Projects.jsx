@@ -26,7 +26,7 @@ const Projects = ({ projectsData, setProjectsData }) => {
   };
 
   return (
-    <div style={{ marginTop: '20px' }}>
+    <div style={{ marginTop: '20px', fontSize: '20px' }}>
       <h2>Projects</h2>
       {projectsData.map((project, index) => (
         <div key={index}>

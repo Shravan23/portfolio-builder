@@ -27,7 +27,7 @@ const WorkExperience = ({ workExperienceData, setWorkExperienceData }) => {
   };
 
   return (
-    <div style={{ marginTop: '20px' }}>
+    <div className='Workexperience-container'>
       <h2>Work Experience</h2>
       {workExperienceData.map((experience, index) => (
         <div key={index}>
@@ -94,7 +94,7 @@ const WorkExperience = ({ workExperienceData, setWorkExperienceData }) => {
               onClick={() => handleRemoveWorkExperience(index)}
               style={{
                 borderRadius: '6px',
-                backgroundColor: '#9370DB',
+                backgroundColor: '#7349c2',
                 color: 'white',
                 padding: '6px',
                 cursor: 'pointer',
@@ -111,7 +111,7 @@ const WorkExperience = ({ workExperienceData, setWorkExperienceData }) => {
         onClick={handleAddWorkExperience}
         style={{
           borderRadius: '6px',
-          backgroundColor: '#9370DB',
+          backgroundColor: '#7349c2',
           color: 'white',
           padding: '8px',
           cursor: 'pointer',

@@ -12,7 +12,7 @@ const WorkExperiencePage = ({
   onCertificationsChange,
 }) => {
   return (
-    <div style={{ marginLeft: '114px', marginTop: '20px' }}>
+    <div>
       <WorkExperience workExperienceData={workExperienceData} setWorkExperienceData={onWorkExperienceChange} />
       <SkillsAndCertifications
         skills={skills}

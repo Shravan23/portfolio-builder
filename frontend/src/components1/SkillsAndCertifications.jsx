@@ -51,7 +51,7 @@ const SkillsAndCertifications = ({ skills, setSkills, certifications, setCertifi
               onClick={() => handleRemoveCertification(index)}
               style={{
                 borderRadius: '6px',
-                backgroundColor: '#9370DB',
+                backgroundColor: '#7349c2',
                 color: 'white',
                 padding: '6px',
                 cursor: 'pointer',
@@ -68,7 +68,7 @@ const SkillsAndCertifications = ({ skills, setSkills, certifications, setCertifi
         onClick={handleAddCertification}
         style={{
           borderRadius: '6px',
-          backgroundColor: '#9370DB',
+          backgroundColor: '#7349c2',
           color: 'white',
           padding: '8px',
           cursor: 'pointer',

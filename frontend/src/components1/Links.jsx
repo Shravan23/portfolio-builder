@@ -23,7 +23,7 @@ const Links = ({ linksData, setLinksData }) => {
   };
 
   return (
-    <div style={{ marginTop: '20px' }}>
+    <div style={{ marginTop: '20px', fontSize: '20px'}}>
       <h2>Links</h2>
       {linksData.map((link, index) => (
         <div key={index}>
