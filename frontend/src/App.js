@@ -5,7 +5,11 @@ import LoginPage from './Components/Login/Login'; // Import your Login page comp
 import SignupPage from './Components/SignUp/SignUp'; // Import your Signup page component
 import HomePage from './Components/Home/Home';
 import './App.css';
-import LogoutPage from './Components/Logout/Logout'
+
+import LogoutPage from './Components/Logout/Logout';
+import SimpleForm from './components1/SimpleForm';
+import TemplatePage from './components2/TemplatePage';
+
 
 // function App() {
 //   return (
@@ -26,7 +30,7 @@ function App() {
   return (
     <Router>
       <div className="App">
-
+     
         {/* <LogoutPage /> */}
 
         <Header />
@@ -34,6 +38,9 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/" element={<HomePage />} />
+          <Route path="/SimpleForm" element={<SimpleForm />} />
+          <Route path="/templatepage" element={<TemplatePage />} />
+          
         </Routes>
       </div>
     </Router>
