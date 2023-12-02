@@ -11,7 +11,7 @@ const OtherDetailsPage = ({ images, projectsData, linksData, onImagesChange, onP
       <Projects projectsData={projectsData} setProjectsData={onProjectsChange} />
       <Links linksData={linksData} setLinksData={onLinksChange} />
       {/* Optionally, you can add a submit button */}
-      <button onClick={onSubmit} style={{ borderRadius: '6px', backgroundColor: '#9370DB', color: 'white', padding: '8px', cursor: 'pointer', marginTop: '20px' }}>
+      <button onClick={onSubmit} style={{ borderRadius: '6px', backgroundColor: '#7349c2', color: 'white', padding: '8px', cursor: 'pointer', marginTop: '20px' }}>
         Submit
       </button>
     </div>

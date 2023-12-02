@@ -72,7 +72,7 @@ const Education = ({ educationData, setEducationData }) => {
             <button
               type="button"
               onClick={() => handleRemoveEducation(index)}
-              style={{ borderRadius: '6px', backgroundColor: '#9370DB', color: 'white', padding: '6px', cursor: 'pointer' }}
+              style={{ borderRadius: '6px', backgroundColor: '#7349c2', color: 'white', padding: '6px', cursor: 'pointer' }}
             >
               Remove
             </button>
@@ -83,7 +83,13 @@ const Education = ({ educationData, setEducationData }) => {
       <button
         type="button"
         onClick={handleAddEducation}
-        style={{ borderRadius: '6px', backgroundColor: '#9370DB', color: 'white', padding: '8px', cursor: 'pointer' }}
+        style={{
+          borderRadius: '6px',
+          backgroundColor: '#7349c2',
+          color: 'white',
+          padding: '8px',
+          cursor: 'pointer',
+        }}
       >
         + Add Education
       </button>

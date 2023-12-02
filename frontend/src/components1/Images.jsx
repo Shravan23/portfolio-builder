@@ -18,7 +18,7 @@ const Images = ({ images, setImages }) => {
   };
 
   return (
-    <div style={{ marginTop: '20px' }}>
+    <div className='images-container'>
       <h2>Upload Images</h2>
       <label htmlFor="imageUpload" style={{ cursor: 'pointer' }}>
         📷 Upload Images
