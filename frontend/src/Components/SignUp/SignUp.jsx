@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './SignUp.css';
 import user_icon from '../Assets/person.png';
 import email_icon from '../Assets/email.png';
@@ -8,11 +9,18 @@ import { useForm } from 'react-hook-form';
 const SignUp = () => {
   const { register, handleSubmit, formState: { errors }, reset } = useForm();
   const [action, setAction] = useState('SignUp');
-
+  const navigate = useNavigate(); // Access the navigate function
   const onSubmit = (data) => {
     console.log('Form data:', data);
     reset();
   };
+
+   // Function to redirect to SimpleForm.jsx
+   const redirectToSimpleForm = () => {
+    // Navigate to SimpleForm.jsx
+    navigate('/SimpleForm'); // Replace '/path-to-SimpleForm' with the actual path
+  };
+
 
   return (
     <div className="container-signup">
@@ -94,7 +102,14 @@ const SignUp = () => {
           <div className="signup-button">
             <button type="submit">SignUp</button>
           </div>
-        </div>
+
+ 
+          <div className="test-button">
+          <button type="button" onClick={redirectToSimpleForm}>
+            Test
+          </button>
+          </div>
+        </div> 
       </form>
     </div>
   );
