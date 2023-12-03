@@ -15,10 +15,9 @@ const SignUp = () => {
     reset();
   };
 
-   const redirectToportfolioCard = () => {
-    navigate('/portfolioCard'); 
+  const redirectToResumeUploadPage = () => {
+    navigate('/resumeUploadPage');
   };
-
 
   return (
     <div className="container-signup">
@@ -103,9 +102,9 @@ const SignUp = () => {
 
  
           <div className="test-button">
-          <button type="button" onClick={redirectToportfolioCard}>
-            Test
-          </button>
+        <button type="button" onClick={redirectToResumeUploadPage}>
+          Test
+        </button>
           </div>
         </div> 
       </form>

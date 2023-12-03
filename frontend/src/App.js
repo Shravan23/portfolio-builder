@@ -9,8 +9,8 @@ import './App.css';
 import store from './redux/store';
 import AuthState from './context/auth/AuthState';
 import LogoutPage from './Components/Logout/Logout';
-import SimpleForm from './UserDetails/SimpleForm';
-import PortfolioCard from './Components/portfolioCard';
+import PortfolioCard from './Components/portfolioCard'; // Assuming you have a PortfolioCard component
+import ResumeUploadPage from './UploadResume/ResumeUploadPage'; // New ResumeUploadPage component
 
 // Layout component with the header
 const HeaderLayout = ({ children }) => (
@@ -41,7 +41,11 @@ function App() {
                 element={<HeaderLayout>{<SignupPage />}</HeaderLayout>}
               />
               {/* Routes without the header */}
-              <Route path="/PortfolioCard" element={<PortfolioCard />} />
+              <Route path="/portfolioCard" element={<HeaderLayout>{<PortfolioCard />}</HeaderLayout>} />
+              <Route
+                path="/resumeUploadPage"
+                element={<HeaderLayout>{<ResumeUploadPage />}</HeaderLayout>}
+              />
               {/* Add other routes as needed */}
             </Routes>
           </div>
