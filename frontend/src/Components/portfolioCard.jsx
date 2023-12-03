@@ -5,14 +5,11 @@ import { toast } from "react-toastify";
 import he from "he";
 import Form from "./Form";
 import Header from "./Bootstrap/Header";
-import Split from "react-split";
 import Code from "./Code";
 import Preview from "./Preview";
 import { Link, useNavigate } from "react-router-dom";
-import NavbarDesign1 from "./NavbarDesign1";
 import NavbarDesign2 from "./NavbarDesign2";
 import NavbarDesign3 from "./NavbarDesign3";
-import NavbarDesign4 from "./NavbarDesign4";
 import ReactDOMServer from "react-dom/server";
 import portfolioCard from "./navigateCard";
 import { connect } from "react-redux";
@@ -182,25 +179,6 @@ const PortfolioCard = ({
 
   let selectedNavbarDesign;
   switch (navbarDesign) {
-    case "NavbarDesign1":
-      selectedNavbarDesign = ReactDOMServer.renderToString(
-        <NavbarDesign1
-          FullName={`${initialState.FormData.FirstName} ${initialState.FormData.LastName}`}
-          isEducationEnabled={isEducationEnabled}
-          isExperienceEnabled={isExperienceEnabled}
-          isSkillEnabled={isSkillEnabled}
-          isAwardsEnabled={isAwardsEnabled}
-          isInterestEnabled={isInterestEnabled}
-          isProjectEnabled={isProjectEnabled}
-          experienceTitle={experienceTitle}
-          educationTitle={educationTitle}
-          skillsTitle={skillsTitle}
-          interestsTitle={interestsTitle}
-          awardsTitle={awardsTitle}
-          projectsTitle={projectsTitle}
-        />
-      );
-      break;
     case "NavbarDesign2":
       selectedNavbarDesign = ReactDOMServer.renderToString(
         <NavbarDesign2
@@ -239,9 +217,9 @@ const PortfolioCard = ({
         />
       );
       break;
-    case "NavbarDesign4":
+    default:
       selectedNavbarDesign = ReactDOMServer.renderToString(
-        <NavbarDesign4
+        <NavbarDesign2
           FullName={`${initialState.FormData.FirstName} ${initialState.FormData.LastName}`}
           isEducationEnabled={isEducationEnabled}
           isExperienceEnabled={isExperienceEnabled}
@@ -255,24 +233,6 @@ const PortfolioCard = ({
           interestsTitle={interestsTitle}
           awardsTitle={awardsTitle}
           projectsTitle={projectsTitle}
-        />
-      );
-      break;
-    default:
-      selectedNavbarDesign = ReactDOMServer.renderToString(
-        <NavbarDesign1
-          FullName={`${initialState.FormData.FirstName} ${initialState.FormData.LastName}`}
-          isEducationEnabled={isEducationEnabled}
-          isExperienceEnabled={isExperienceEnabled}
-          isSkillEnabled={isSkillEnabled}
-          isAwardsEnabled={isAwardsEnabled}
-          isInterestEnabled={isInterestEnabled}
-          isProjectEnabled={isProjectEnabled}
-          experienceTitle={experienceTitle}
-          educationTitle={educationTitle}
-          skillsTitle={skillsTitle}
-          interestsTitle={interestsTitle}
-          awardsTitle={awardsTitle}
         />
       );
       break;
@@ -290,10 +250,6 @@ const PortfolioCard = ({
               ${projects
                 .map(
                   (project) => `
-
-
-             
-
                 <div class="project-card mb-5 border-[1px] borer-solid overflow-hidden flex flex-col">
                   <div class="project-top max-w-[100%] object-contain m-[10px] min-h-[150px] ">
                     <img class="max-w-[100%] object-contain m-[10px] min-h-[150px]" src="${project.project.image}" alt="${
@@ -632,49 +588,9 @@ const PortfolioCard = ({
 
   return (
     <div className="App w-full overflow-y-scroll  dark:bg-black dark:text-white">
+      {/* // logout header */}
       {console.log("hi" + selectedDesign)}
-
-      <Header
-        className={` bg-${
-          initialState.Dark ? "white border-b-2" : "black"
-        } text-${
-          initialState.Dark ? "black" : "white"
-        } flex justify-center h-12 items-center mb-8`}
-      >
-        <h1 className="text-2xl text-center inline mx-6 my-0">
-          Portfolio Generator
-        </h1>
-        <button
-          className={`btn btn-sm btn-outline-${
-            initialState.Dark ? "primary" : "secondary"
-          } rounded-full`}
-          onClick={toggleHeader}
-        >
-          <i
-            className={`fa fa-${
-              initialState.Dark ? "sun" : "moon"
-            }-o text-xl m-0`}
-          ></i>
-        </button>
-      </Header>
-      <Link
-        className="pl-4 text-xl font-medium text-blue-500 cursor-pointer"
-        to={"/"}
-      >
-        Home
-      </Link>
       <div style={containerStyle}>
-        <button
-          style={{
-            ...buttonStyle,
-            background:
-              navbarDesign === "NavbarDesign1" ? "lightblue" : "white",
-            color: navbarDesign === "NavbarDesign1" ? "black" : "black",
-          }}
-          onClick={() => handleDesignChange("NavbarDesign1")}
-        >
-          Navbar 1
-        </button>
         <button
           style={{
             ...buttonStyle,
@@ -684,7 +600,7 @@ const PortfolioCard = ({
           }}
           onClick={() => handleDesignChange("NavbarDesign2")}
         >
-          Navbar 2
+          Template 1
         </button>
         <button
           style={{
@@ -695,17 +611,7 @@ const PortfolioCard = ({
           }}
           onClick={() => handleDesignChange("NavbarDesign3")}
         >
-          Navbar 3
-        </button>
-        <button
-          style={{
-            ...buttonStyle,
-            background: navbarDesign === "NavbarDesign4" ? "red" : "white",
-            color: navbarDesign === "NavbarDesign4" ? "white" : "black",
-          }}
-          onClick={() => handleDesignChange("NavbarDesign4")}
-        >
-          Navbar 4
+          Template 2
         </button>
       </div>
       <div className="w-full pl-12 my-1">
