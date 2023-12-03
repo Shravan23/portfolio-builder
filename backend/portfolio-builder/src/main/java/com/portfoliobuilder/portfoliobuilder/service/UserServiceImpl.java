@@ -3,21 +3,22 @@ package com.portfoliobuilder.portfoliobuilder.service;
 import com.portfoliobuilder.portfoliobuilder.dto.LoginDto;
 import com.portfoliobuilder.portfoliobuilder.dto.UserDto;
 import com.portfoliobuilder.portfoliobuilder.models.User;
+import com.portfoliobuilder.portfoliobuilder.models.UserData;
+import com.portfoliobuilder.portfoliobuilder.repository.UserDataRepository;
 import com.portfoliobuilder.portfoliobuilder.repository.UserRepository;
 import com.portfoliobuilder.portfoliobuilder.util.LoginMessage;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
 
 @Service
 public class UserServiceImpl implements  UserService{
 
     @Autowired
     UserRepository repository;
+
+    @Autowired
+    UserDataRepository userDataRepository;
     @Autowired
     PasswordEncoder passwordEncoder;
     @Override
@@ -30,7 +31,8 @@ public class UserServiceImpl implements  UserService{
                 userDto.getFirstName(),
                 userDto.getLastName(),
                 userDto.getEmail(),
-                passwordEncoder.encode(userDto.getPassword())
+                passwordEncoder.encode(userDto.getPassword()),
+                true
         );
         repository.save(user);
         return ("Signup Successful for the user");
@@ -51,5 +53,33 @@ public class UserServiceImpl implements  UserService{
         }
     }
 
+    @Override
+    public User findByEmail(String email) {
+        return repository.findByEmail(email);
+    }
+
+    @Override
+    public void updateUserFirstLoginStatus(User user) {
+        user.setFirstLogin(false);
+        repository.save(user);
+    }
+
+    @Override
+    public UserData getUserData(User user) {
+        Long id = user.getId();
+        UserData data = userDataRepository.findUserDataByUserDataId(id);
+        return userDataRepository.findUserDataByUserDataId(id);
+    }
+
+    @Override
+    public UserData saveUserData(User user, String jsonData) {
+        UserData userData = getUserData(user);
+        if(userData == null) {
+            userData = new UserData();
+            userData.setUserDataId(user.getId());
+        }
+        userData.setUserData(jsonData);
+        return userDataRepository.save(userData);
+    }
 
 }

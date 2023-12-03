@@ -6,24 +6,26 @@ import lombok.*;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "users", uniqueConstraints = {
-        @UniqueConstraint(columnNames = "email")
-})
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
+@Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id")
     private Long id;
-    @NonNull
+    @Column(nullable = false)
     private String firstName;
-    @NonNull
+    @Column(nullable = false)
     private String lastName;
-    @NonNull
+    @Column(nullable = false, unique = true)
     private String email;
 
     @JsonIgnore
-    @NonNull
+    @Column(nullable = false)
     private String password;
+
+    @Column
+    private boolean isFirstLogin = true;
 }
