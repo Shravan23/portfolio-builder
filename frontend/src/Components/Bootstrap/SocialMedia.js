@@ -21,7 +21,7 @@ const SocialMedia = ({
             name={md}
             onChange={onChange}
             value={value[md]}
-            placeholder={`Enter something for ${MediaData[md][1]}`}
+            placeholder={`Please Enter Your ${MediaData[md][1]}`}
             readOnly={readOnly}
           />
           {MediaData[md][2] && (

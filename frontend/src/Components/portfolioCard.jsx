@@ -595,7 +595,7 @@ const PortfolioCard = ({
           style={{
             ...buttonStyle,
             background:
-              navbarDesign === "NavbarDesign2" ? "lightgray" : "white",
+              navbarDesign === "NavbarDesign2" ? "darkblue" : "white",
             color: navbarDesign === "NavbarDesign2" ? "white" : "black",
           }}
           onClick={() => handleDesignChange("NavbarDesign2")}

@@ -11,44 +11,21 @@ import { SectionTitle } from "./sectionTitle/sectionTitle";
 const Form = ({ FormData, onChange, isExperienceEnabled, isEducationEnabled, isSkillEnabled, isInterestEnabled, isAwardsEnabled,
   isProjectEnabled,toggleProject,toggleExperience,toggleEducation,toggleSkill,toggleInterest,toggleAward }) => {
   const Desc = {
-    FullName: [
-      "text",
-      "Full Name",
-      "This is your full name. This has been generated using your first and last names.",
-    ],
     FirstName: [
       "text",
       "First Name",
-      "Please enter your first name or given name.",
     ],
-    LastName: ["text", "Last Name", "Please enter your last name or surname"],
-    Thubmnail: [
-      "text",
-      "Your Photo",
-      "Please upload your photo in a CDN(Ex. Imgur) and paste the direct image URL here.",
-    ],
-    URL: [
-      "text",
-      "Website link",
-      "Please enter the URL of your website, where this page is going to be hosted",
-    ],
-    Description: ["text", "About you", "Write something nice about you."],
-    Keywords: [
-      "text",
-      "Keywords",
-      "If someone wants to search for you, what keywords should they use?",
-    ],
+    LastName: ["text", "Last Name",],
+    Description: ["text", "Summary",],
     Address: [
       "text",
-      "Where are you?",
-      "Type in your full address to get kidnapped!",
+      "City Name",
     ],
     Phone: [
       "text",
       "Phone Number",
-      "Please enter your phone number, so we can call you in the midnight!",
     ],
-    Email: ["text", "Email Address", "Tell us your primary email address"],
+    Email: ["text", "Email Address",],
     Colour: [
       "color",
       "Theme Colour",
@@ -56,40 +33,13 @@ const Form = ({ FormData, onChange, isExperienceEnabled, isEducationEnabled, isS
     ],
 
     Socials: {
-      Facebook: [
-        "text",
-        "Facebook Id",
-        "Please enter your Facebook handle, so that we can follow your cat videos and food pics!",
-      ],
-      WhatsApp: [
-        "text",
-        "WhatsApp Number",
-        "Please enter your WhatsApp number, so that we can send you 1000 'Good Morning' messages every day!",
-      ],
-      Instagram: [
-        "text",
-        "Instagram Username",
-        "Please enter your Instagram username, so that we can double-tap all your photos!",
-      ],
-      Twitter: [
-        "text",
-        "Twitter Handle",
-        "Please enter your Twitter handle, so that we can retweet your witty thoughts!",
-      ],
       LinkedIn: [
         "text",
         "LinkedIn ID",
-        "Please enter your LinkedIn ID, so that we can congratulate you on your 'work anniversaries'!",
       ],
       GitHub: [
         "text",
         "GitHub Username",
-        "Please enter your GitHub username, so that we can fork your repositories!",
-      ],
-      StackOverflow: [
-        "text",
-        "StackOverflow Profile",
-        "Please enter your StackOverflow profile, so that we can ask you to solve our coding dilemmas!",
       ],
     },
   };
@@ -103,7 +53,7 @@ const Form = ({ FormData, onChange, isExperienceEnabled, isEducationEnabled, isS
   };
   return (
     <div className="Form">
-      <h1 className="text-xl mb-2 font-bold">Basic Info</h1>
+      <h1 className="text-xl mb-2 font-bold">Personal Details</h1>
       {Object.keys(FormData).map((fd) =>
         fd !== "Socials" ? (
           Object.keys(Desc).includes(fd) && (
@@ -114,7 +64,7 @@ const Form = ({ FormData, onChange, isExperienceEnabled, isEducationEnabled, isS
               Id={fd}
               Desc={Desc[fd][2]}
               Value={FormData[fd]}
-              Placeholder={`Enter something for ${Desc[fd][1]}`}
+              Placeholder={`Please Enter your ${Desc[fd][1]}`}
               onChange={fd === "FullName" ? () => {} : onChange}
               readOnly={fd === "FullName" ? true : undefined}
               borderColor={getBorderColor(fd)}
