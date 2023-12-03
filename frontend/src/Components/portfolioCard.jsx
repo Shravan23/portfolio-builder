@@ -9,14 +9,11 @@ import Split from "react-split";
 import Code from "./Code";
 import Preview from "./Preview";
 import { Link, useNavigate } from "react-router-dom";
-// import NavbarDesign1 from "./NavbarDesign1";
 import NavbarDesign2 from "./NavbarDesign2";
 import NavbarDesign3 from "./NavbarDesign3";
-// import NavbarDesign4 from "./NavbarDesign4";
 import ReactDOMServer from "react-dom/server";
 import portfolioCard from "./navigateCard";
 import { connect } from "react-redux";
-
 
 const PortfolioCard = ({
   experienceTitle,
@@ -54,7 +51,7 @@ const PortfolioCard = ({
       },
     },
     fileDownloadUrl: null,
-    PreviewMode: true,
+    PreviewMode: false,
   };
   const [initialState, setInitialState] = useState(data);
   const toggleHeader = () => {
@@ -94,7 +91,7 @@ const PortfolioCard = ({
               ...initialState.FormData,
               [e.target.name]: e.target.value,
             },
-            PreviewMode: true,
+            PreviewMode: false,
           };
         })
       : setInitialState((prevState) => {
@@ -107,7 +104,7 @@ const PortfolioCard = ({
                 [e.target.name]: e.target.value,
               },
             },
-            PreviewMode: true,
+            PreviewMode: false,
           };
         });
   };
@@ -175,7 +172,7 @@ const PortfolioCard = ({
     setisProjectEnabled(!isProjectEnabled);
   };
 
-  const [navbarDesign, setNavbarDesign] = useState("NavbarDesign1");
+  const [navbarDesign, setNavbarDesign] = useState("NavbarDesign2");
 
   const handleDesignChange = (design) => {
     setNavbarDesign(design);
@@ -237,7 +234,7 @@ const PortfolioCard = ({
           interestsTitle={interestsTitle}
           awardsTitle={awardsTitle}
           projectsTitle={projectsTitle}
-          />
+        />
       );
       break;
   }
@@ -597,8 +594,6 @@ const PortfolioCard = ({
   return (
     <div className="App w-full overflow-y-scroll  dark:bg-black dark:text-white">
       {console.log("hi" + selectedDesign)}
-
-      
       <div style={containerStyle}>
         <button
           style={{
@@ -609,7 +604,7 @@ const PortfolioCard = ({
           }}
           onClick={() => handleDesignChange("NavbarDesign2")}
         >
-          Template 1
+          Navbar 2
         </button>
         <button
           style={{
@@ -620,7 +615,7 @@ const PortfolioCard = ({
           }}
           onClick={() => handleDesignChange("NavbarDesign3")}
         >
-          Template 2
+          Navbar 3
         </button>
       </div>
       <div className="w-full pl-12 my-1">
@@ -681,31 +676,11 @@ const PortfolioCard = ({
           <div className="p-3 w-1/2">
             <ul className="flex">
               <li className="mr-2">
-              <li>
-                <span
-                  className={`cursor-pointer px-4 py-2 rounded-t-lg ${
-                    initialState.PreviewMode
-                      ? " text-white"
-                      : " text-black"
-                  }`}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setInitialState((prevState) => {
-                      return {
-                        ...prevState,
-                        PreviewMode: true,
-                      };
-                    });
-                  }}
-                >
-                 
-                </span>
-              </li>
                 <span
                   className={`cursor-pointer px-4 py-2 rounded-t-lg ${
                     !initialState.PreviewMode
-                      ? "text-white"
-                      : "text-black"
+                      ? "bg-blue-500 text-white"
+                      : "bg-gray-300 text-black"
                   }`}
                   onClick={(e) => {
                     e.preventDefault();
@@ -717,7 +692,27 @@ const PortfolioCard = ({
                     });
                   }}
                 >
-                  
+                  Code
+                </span>
+              </li>
+              <li>
+                <span
+                  className={`cursor-pointer px-4 py-2 rounded-t-lg ${
+                    initialState.PreviewMode
+                      ? "bg-blue-500 text-white"
+                      : "bg-gray-300 text-black"
+                  }`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setInitialState((prevState) => {
+                      return {
+                        ...prevState,
+                        PreviewMode: true,
+                      };
+                    });
+                  }}
+                >
+                  Preview
                 </span>
               </li>
             </ul>
