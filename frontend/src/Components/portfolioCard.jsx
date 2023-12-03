@@ -4,15 +4,12 @@ import { ToastContainer } from "react-toastify";
 import { toast } from "react-toastify";
 import he from "he";
 import Form from "./Form";
-import Header from "./Bootstrap/Header";
-import Split from "react-split";
 import Code from "./Code";
 import Preview from "./Preview";
 import { Link, useNavigate } from "react-router-dom";
 import NavbarDesign2 from "./NavbarDesign2";
 import NavbarDesign3 from "./NavbarDesign3";
 import ReactDOMServer from "react-dom/server";
-import portfolioCard from "./navigateCard";
 import { connect } from "react-redux";
 
 const PortfolioCard = ({
@@ -604,7 +601,7 @@ const PortfolioCard = ({
           }}
           onClick={() => handleDesignChange("NavbarDesign2")}
         >
-          Navbar 2
+          Template 1
         </button>
         <button
           style={{
@@ -615,7 +612,7 @@ const PortfolioCard = ({
           }}
           onClick={() => handleDesignChange("NavbarDesign3")}
         >
-          Navbar 3
+          Template 2
         </button>
       </div>
       <div className="w-full pl-12 my-1">
