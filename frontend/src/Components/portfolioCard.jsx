@@ -468,99 +468,6 @@ const PortfolioCard = ({
 
       const customStyles2 = `
     <style>
-    /* Add this CSS to style the project cards */
-   
-    .project-card {
-      display: flex;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-      overflow: hidden;
-      position: relative;
-      margin-bottom: 20px; /* Added margin for spacing between project cards */
-    }
-    
-    .project-image {
-      flex: 1;
-      max-width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      min-width:220px;
-    }
-    
-    .project-image img {
-      max-width: 100%;
-      max-height: 100%;
-      object-fit: contain; /* Fit image within available space */
-    }
-    
-    .project-date {
-      position: absolute;
-      bottom: 10px; /* Adjust this value for the desired vertical position */
-      right: 10px; /* Adjust this value for the desired horizontal position */
-    }
-    
-    .project-details {
-      background-color: #0074d9;
-      color: #fff;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      max-height: 1000px; /* Adjust the maximum height as needed */
-      max-width: 300px;
-      overflow: hidden;
-    }
-    
-    .project-details h3 {
-      font-size: 1.8rem; /* Bigger font size for project name */
-      margin: 0 0 10px;
-      word-wrap: break-word;
-    }
-    
-    .project-details .tech-stack,
-    .project-details .description,
-    .project-info {
-      margin: 10px 0;
-      word-wrap: break-word;
-     
-    }
-    
-    .link-button {
-      background-color: #fff;
-      color: #000; /* Black text color */
-      border: none;
-      border-radius: 20px;
-      padding: 5px 15px;
-      cursor: pointer;
-    }
-    
-    .link-button:hover {
-      background-color: #007BFF; /* Blue on hover */
-      color: #fff;
-    }
-    /* Center the projects */
-.row {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-@media screen and (min-width: 768px) {
-  .project-card{
-    max-height: 500px; /* Adjusted max-height for larger screens */
-  }
-  .project-details
-  {
-    max-width:600px;
-  }
-  @media screen and (min-width: 1024px) {
-    .project-card {
-      max-width: 10000px; /* Adjusted max-width for larger screens */
-    }
-  }
-}
-    /* Add more CSS for styling links, headers, and other elements as desired */
     
     </style>
     `;
@@ -670,27 +577,6 @@ const PortfolioCard = ({
             </a>
           </div>
           <div className="p-3 w-1/2">
-            <ul className="flex">
-              <li className="mr-2">
-                <span
-                  className={`cursor-pointer px-4 py-2 rounded-t-lg ${
-                    !initialState.PreviewMode
-                      ? "bg-blue-500 text-white"
-                      : "bg-gray-300 text-black"
-                  }`}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setInitialState((prevState) => {
-                      return {
-                        ...prevState,
-                        PreviewMode: false,
-                      };
-                    });
-                  }}
-                >
-                  Code
-                </span>
-              </li>
               <li>
                 <span
                   className={`cursor-pointer px-4 py-2 rounded-t-lg ${
@@ -710,9 +596,8 @@ const PortfolioCard = ({
                 >
                   Preview
                 </span>
-              </li>
-            </ul>
-            {initialState.PreviewMode ? (
+             </li>
+      
               <Preview
                 {...initialState.FormData}
                 FullName={`${initialState.FormData.FirstName} ${initialState.FormData.LastName}`}
@@ -724,20 +609,6 @@ const PortfolioCard = ({
                 Navbar={selectedNavbarDesign}
                 Projectdesign={projectSection}
               />
-            ) : (
-              <Code
-                {...initialState.FormData}
-                FullName={`${initialState.FormData.FirstName} ${initialState.FormData.LastName}`}
-                isEducationEnabled={isEducationEnabled}
-                isExperienceEnabled={isExperienceEnabled}
-                isSkillEnabled={isSkillEnabled}
-                isAwardsEnabled={isAwardsEnabled}
-                isInterestEnabled={isInterestEnabled}
-                isProjectEnabled={isProjectEnabled}
-                Navbar={selectedNavbarDesign}
-                Projectdesign={projectSection}
-              />
-            )}
           </div>
         </div>
       </div>
