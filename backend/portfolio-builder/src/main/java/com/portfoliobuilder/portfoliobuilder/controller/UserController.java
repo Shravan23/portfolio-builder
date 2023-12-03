@@ -10,8 +10,10 @@ import com.portfoliobuilder.portfoliobuilder.util.LoginMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -63,5 +65,13 @@ public class UserController {
         }
 
         return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Invalid token or user not found.");
+    }
+
+    @PostMapping("/logout")
+    @PreAuthorize("isAuthenticated()")
+    public ResponseEntity<?> logout(HttpServletRequest request) {
+        String token = jwtTokenProvider.resolveToken(request);
+        service.logout(token);
+        return ResponseEntity.ok().build();
     }
 }

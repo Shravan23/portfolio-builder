@@ -6,6 +6,7 @@ import com.portfoliobuilder.portfoliobuilder.models.User;
 import com.portfoliobuilder.portfoliobuilder.models.UserData;
 import com.portfoliobuilder.portfoliobuilder.repository.UserDataRepository;
 import com.portfoliobuilder.portfoliobuilder.repository.UserRepository;
+import com.portfoliobuilder.portfoliobuilder.security.JwtTokenProvider;
 import com.portfoliobuilder.portfoliobuilder.util.LoginMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -21,6 +22,9 @@ public class UserServiceImpl implements  UserService{
     UserDataRepository userDataRepository;
     @Autowired
     PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private JwtTokenProvider jwtTokenProvider;
     @Override
     public String addUser(UserDto userDto) {
         if (repository.findByEmail(userDto.getEmail()) != null) {
@@ -80,6 +84,10 @@ public class UserServiceImpl implements  UserService{
         }
         userData.setUserData(jsonData);
         return userDataRepository.save(userData);
+    }
+
+    public void logout(String token) {
+        jwtTokenProvider.blacklistToken(token);
     }
 
 }

@@ -20,4 +20,6 @@ public interface UserService {
     UserData getUserData(User user);
     UserData saveUserData(User user, String jsonData);
 
+    void logout(String token);
+
 }
