@@ -8,10 +8,8 @@ import HomePage from './Components/Home/Home';
 import './App.css';
 import store from './redux/store'
 import AuthState from "./context/auth/AuthState";
-
 import LogoutPage from './Components/Logout/Logout';
 import SimpleForm from './UserDetails/SimpleForm';
-import TemplatePage from './Template_Page/TemplatePage';
 import PortfolioCard from "./Components/portfolioCard";
 
 
@@ -27,7 +25,6 @@ function App() {
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/home" element={<HomePage />} />
           <Route path="/SimpleForm" element={<SimpleForm />} />
-          <Route path="/templatepage" element={<TemplatePage />} /> 
           <Route path="/" element={<PortfolioCard/>}/>  
         </Routes>
       </div>
