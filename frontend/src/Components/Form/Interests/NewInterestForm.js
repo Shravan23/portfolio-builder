@@ -39,7 +39,7 @@ const NewInterestForm = ({ interests = [], onCreatePressed }) => {
       <input
         className="dark:bg-zinc-800 form-control form-control-sm mb-2 w-96 border outline-gray-200 p-1"
         type="text"
-        placeholder="Describe your interests in a few words..."
+        placeholder="Enter Some of your interests"
         value={interest}
         onChange={(e) => {
           setInterest(e.target.value);

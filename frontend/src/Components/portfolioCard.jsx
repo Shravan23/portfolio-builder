@@ -577,27 +577,6 @@ const PortfolioCard = ({
             </a>
           </div>
           <div className="p-3 w-1/2">
-              <li>
-                <span
-                  className={`cursor-pointer px-4 py-2 rounded-t-lg ${
-                    initialState.PreviewMode
-                      ? "bg-blue-500 text-white"
-                      : "bg-gray-300 text-black"
-                  }`}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setInitialState((prevState) => {
-                      return {
-                        ...prevState,
-                        PreviewMode: true,
-                      };
-                    });
-                  }}
-                >
-                  Preview
-                </span>
-             </li>
-      
               <Preview
                 {...initialState.FormData}
                 FullName={`${initialState.FormData.FirstName} ${initialState.FormData.LastName}`}
