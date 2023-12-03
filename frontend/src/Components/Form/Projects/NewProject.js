@@ -61,22 +61,6 @@ const NewProjectForm = ({ onCreatePressed,onChangeDesign }) => {
 
   return (
     <div className="border rounded p-3 m-2">
-      <div className="row">
-        <div className="col-12 text-center">
-          <button
-            className={`btn ${selectedDesign === "design1" ? "btn-primary" : "btn-secondary"}`}
-            onClick={() => handleDesignSelection("design1")}
-          >
-            Design 1
-          </button>
-          <button
-            className={`btn ${selectedDesign === "design2" ? "btn-primary" : "btn-secondary"}`}
-            onClick={() => handleDesignSelection("design2")}
-          >
-            Design 2
-          </button>
-        </div>
-      </div>
       <input
         type="text"
         className="dark:bg-zinc-800 form-control form-control-sm mb-2 border py-1 px-2 rounded-sm text-sm capitalize outline-gray-200"
@@ -104,7 +88,7 @@ const NewProjectForm = ({ onCreatePressed,onChangeDesign }) => {
         type="text"
         className="dark:bg-zinc-800 form-control form-control-sm mb-2 border py-1 px-2 rounded-sm text-sm capitalize outline-gray-200"
         name="techStack"
-        placeholder="Tech Stack"
+        placeholder="Technology Stack"
         value={projectData.techStack}
         onChange={handleChange}
       />
@@ -132,60 +116,7 @@ const NewProjectForm = ({ onCreatePressed,onChangeDesign }) => {
         value={projectData.timeline}
         onChange={handleChange}
       />
-      <div className="form-check mb-2">
-        <input
-          type="checkbox"
-          className="dark:bg-zinc-800 form-control form-control-sm mb-2 border py-1 px-2 rounded-sm text-sm capitalize outline-gray-200"
-          name="guidedByProfessor"
-          checked={projectData.guidedByProfessor}
-          onChange={handleChange}
-        />
-        <label className="form-check-label">Guided by Professor</label>
-      </div>
-      {projectData.guidedByProfessor && (
-       <input
-       type="text"
-       className="dark:bg-zinc-800 form-control form-control-sm mb-2 border py-1 px-2 rounded-sm text-sm capitalize outline-gray-200"
-       name="professorName"
-       placeholder="Professor's Name"
-       value={projectData.professorName}
-       onChange={handleChange}
-     />
-      )}
-      
-      {/* Club Project Checkbox */}
-      <div className="form-check mb-2">
-        <input
-          type="checkbox"
-          className="dark:bg-zinc-800 form-control form-control-sm mb-2 border py-1 px-2 rounded-sm text-sm capitalize outline-gray-200"
-          name="isClubProject"
-          checked={projectData.isClubProject}
-          onChange={handleChange}
-        />
-        <label className="form-check-label">Club Project</label>
-      </div>
-      {/* Club Name */}
-      {projectData.isClubProject && (
-        <input
-          type="text"
-          className="dark:bg-zinc-800 form-control form-control-sm mb-2 border py-1 px-2 rounded-sm text-sm capitalize outline-gray-200"
-          name="clubName"
-          placeholder="Club Name"
-          value={projectData.clubName}
-          onChange={handleChange}
-        />
-      )}
-      {/* Self-Project Checkbox */}
-      <div className="form-check mb-2">
-        <input
-          type="checkbox"
-          className="dark:bg-zinc-800 form-control form-control-sm mb-2 border py-1 px-2 rounded-sm text-sm capitalize outline-gray-200"
-          name="isSelfProject"
-          checked={projectData.isSelfProject}
-          onChange={handleChange}
-        />
-        <label className="form-check-label">Self-Project</label>
-      </div>
+
       <div className="text-right">
         <button
           className="btn btn-success btn-sm rounded-circle"

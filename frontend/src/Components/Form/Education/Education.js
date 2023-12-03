@@ -13,12 +13,6 @@ const Education = ({ education, onRemovePressed }) => {
                     <div className="col-xl-4 col-9">{education.degree}</div>
                 </div>
                 <div className="row">
-                    <div className="col-2">Start: </div>
-                    <div className="col-4">{education.start}</div>
-                    <div className="col-2">End: </div>
-                    <div className="col-4">{education.end ? education.end : education.presentUniversity ? "Present" : ""}</div>
-                </div>
-                <div className="row">
                     <div className="col-sm-2">GPA:</div>
                     <div className="col-sm-10">{education.gpa}</div>
                 </div>

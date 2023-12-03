@@ -95,27 +95,6 @@ const NewEducationForm = ({ educations = [], onCreatePressed }) => {
             enabled={endDateEnabled}
           />
         </div>
-        <div className="col">
-          <div className="form-check border p-1 flex justify-center items-center w-24">
-            <input
-              className="form-check-input px-1"
-              id="presentUniversity"
-              type="checkbox"
-              value={presentUniversity}
-              onChange={(e) => {
-                setPresentUniversity(e.target.checked);
-                setEndDateEnabled(!endDateEnabled);
-              }}
-              // disabled={end !== ''}
-            />
-            <label
-              className="form-check-label px-1"
-              htmlFor="presentUniversity"
-            >
-              Present
-            </label>
-          </div>
-        </div>
       </div>
 
       <div className="text-right">
