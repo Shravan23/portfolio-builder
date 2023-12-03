@@ -15,10 +15,8 @@ const SignUp = () => {
     reset();
   };
 
-   // Function to redirect to SimpleForm.jsx
-   const redirectToSimpleForm = () => {
-    // Navigate to SimpleForm.jsx
-    navigate('/SimpleForm'); // Replace '/path-to-SimpleForm' with the actual path
+   const redirectToportfolioCard = () => {
+    navigate('/portfolioCard'); 
   };
 
 
@@ -105,7 +103,7 @@ const SignUp = () => {
 
  
           <div className="test-button">
-          <button type="button" onClick={redirectToSimpleForm}>
+          <button type="button" onClick={redirectToportfolioCard}>
             Test
           </button>
           </div>
