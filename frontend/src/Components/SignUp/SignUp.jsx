@@ -99,13 +99,6 @@ const SignUp = () => {
           <div className="signup-button">
             <button type="submit">SignUp</button>
           </div>
-
- 
-          <div className="test-button">
-        <button type="button" onClick={redirectToResumeUploadPage}>
-          Test
-        </button>
-          </div>
         </div> 
       </form>
     </div>
