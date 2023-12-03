@@ -121,13 +121,37 @@ const PortfolioCard = ({
       let output = he.decode(
         document.getElementsByClassName("codefile")[0].innerHTML
       );
-      const blob = new Blob([output]);
-      const fileDownloadUrl2 = URL.createObjectURL(blob);
+      const htmlContent = ReactDOMServer.renderToString(
+        <PortfolioCard
+          experienceTitle="Your Experience Title"
+          skillsTitle="Your Skills Title"
+          interestsTitle="Your Interests Title"
+          awardsTitle="Your Awards Title"
+          educationTitle="Your Education Title"
+          projectsTitle="Your Projects Title"
+          selectedDesign="NavbarDesign2"
+        />
+      );
+      const blob = new Blob([htmlContent], { type: "text/html" });
+
+      // Create a download link
+      const downloadLink = document.createElement("a");
+      downloadLink.href = URL.createObjectURL(blob);
+      downloadLink.download = "portfolio.html";
+
+      // Trigger a click on the link to start the download
+      document.body.appendChild(downloadLink);
+      downloadLink.click();
+
+      // Remove the link from the DOM
+      document.body.removeChild(downloadLink);
+      // const blob = new Blob([output]);
+      // const fileDownloadUrl2 = URL.createObjectURL(blob);
 
       setInitialState((prevState) => {
         return {
           ...prevState,
-          fileDownloadUrl: fileDownloadUrl2,
+          fileDownloadUrl: downloadLink.href,
         };
       });
 
@@ -604,7 +628,7 @@ const PortfolioCard = ({
           style={{
             ...buttonStyle,
             background:
-              navbarDesign === "NavbarDesign2" ? "darkblue" : "white",
+              navbarDesign === "NavbarDesign2" ? "lightgray" : "white",
             color: navbarDesign === "NavbarDesign2" ? "white" : "black",
           }}
           onClick={() => handleDesignChange("NavbarDesign2")}
@@ -680,13 +704,11 @@ const PortfolioCard = ({
           </div>
           <div className="p-3 w-1/2">
             <ul className="flex">
-              <li className="mr-2">
-              <li>
                 <span
                   className={`cursor-pointer px-4 py-2 rounded-t-lg ${
                     initialState.PreviewMode
-                      ? " text-white"
-                      : " text-black"
+                      ? "text-white"
+                      : "text-black"
                   }`}
                   onClick={(e) => {
                     e.preventDefault();
@@ -698,28 +720,7 @@ const PortfolioCard = ({
                     });
                   }}
                 >
-                 
                 </span>
-              </li>
-                <span
-                  className={`cursor-pointer px-4 py-2 rounded-t-lg ${
-                    !initialState.PreviewMode
-                      ? "text-white"
-                      : "text-black"
-                  }`}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setInitialState((prevState) => {
-                      return {
-                        ...prevState,
-                        PreviewMode: false,
-                      };
-                    });
-                  }}
-                >
-                  
-                </span>
-              </li>
             </ul>
             {initialState.PreviewMode ? (
               <Preview
