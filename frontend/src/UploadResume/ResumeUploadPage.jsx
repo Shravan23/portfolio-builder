@@ -1,16 +1,24 @@
 import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { GrUpload } from 'react-icons/gr';
+import { parseResumeFromPdf } from "../Components/ResumeParser/parser";
 
 const ResumeUploadPage = () => {
   const navigate = useNavigate();
   const fileInputRef = useRef(null);
   const [selectedFile, setSelectedFile] = useState(null);
+  const [resume, setResume] = useState(null);
 
   const handleFileChange = (event) => {
     // Handle file changes and update the selectedFile state
+    
     const file = event.target.files[0];
-    setSelectedFile(file);
+    if(file && file.type === "application/pdf") {
+      setSelectedFile(file);
+    } else {
+      alert("Only PDF files are allowed - working");
+      fileInputRef.current.value = null; // Reset the input if not a PDF
+    }
   };
 
   const handleUploadResume = () => {
@@ -31,9 +39,23 @@ const ResumeUploadPage = () => {
     fileInputRef.current.value = null;
   };
 
-  const handleRedirect = () => {
-    // Redirect to the portfolioCard page
-    navigate('/portfolioCard');
+  const onImportClick = async () => {
+    if (selectedFile) {
+      try {
+        const fileUrl = URL.createObjectURL(selectedFile);
+        const resumeData = await parseResumeFromPdf(fileUrl);
+        URL.revokeObjectURL(fileUrl);
+        handleRedirect(resumeData);
+      } catch (error) {
+        alert("Failed to parse the resume");
+      }
+    } else {
+      alert("No file selected");
+    }
+  };
+
+  const handleRedirect = (resumeData) => {
+    navigate('/portfolioCard', {state: { resume: resumeData}});
   };
 
   return (
@@ -64,20 +86,20 @@ const ResumeUploadPage = () => {
       {selectedFile && (
         <div>
           <p>Selected File: {selectedFile.name}</p>
+          {/* <button onClick={onImportClick} style={{ borderRadius: '15px', padding: '10px 20px', fontSize: '16px' }}>Import and Continue</button> */}
           <button onClick={handleRemoveFile} style={{ borderRadius: '15px', padding: '10px 20px', fontSize: '16px' }}>Remove File</button>
         </div>
       )}
 
       <div  style={{ textAlign: 'center', marginBottom: '20px' }}>
       <button
-        onClick={handleRedirect}
+        onClick={onImportClick}
         disabled={!selectedFile}
         style={{ borderRadius: '15px', padding: '10px 20px', fontSize: '16px' }}
         >
         Submit
       </button>
       </div>
-      
     </div>
   );
 };
