@@ -10,8 +10,23 @@ import { SectionTitle } from "./sectionTitle/sectionTitle";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 
-const Form = ({ FormData, initialData, onChange, isExperienceEnabled, isEducationEnabled, isSkillEnabled, isInterestEnabled, isAwardsEnabled, isProjectEnabled,toggleProject,toggleExperience,toggleEducation,toggleSkill,toggleInterest,toggleAward,}) => {
+const Form = ({ initialData: propInitialData, onChange, isExperienceEnabled, isEducationEnabled, isSkillEnabled, isInterestEnabled, isAwardsEnabled, isProjectEnabled,toggleProject,toggleExperience,toggleEducation,toggleSkill,toggleInterest,toggleAward,}) => {
   const {state} = useLocation() 
+  const [initialData] = useState(propInitialData);
+  const [FormData, setFormData] = useState({
+    FirstName: "",
+    LastName: "",
+    Description: "",
+    Address: "",
+    Phone: "",
+    Email: "",
+    Colour: "",
+    Socials: {
+      LinkedIn: "",
+      GitHub: "",
+    },
+  });
+  
   const Desc = {
     FirstName: [
       "text",
@@ -53,28 +68,24 @@ const Form = ({ FormData, initialData, onChange, isExperienceEnabled, isEducatio
     }
     return ""; // No special border color for unfilled section
   };
-  
   const autoFillFormData = () => {
-    if (initialData && Object.keys(initialData).length > 0) {
-      console.log("Name:", state.resume.profile.name);
-      console.log("Summary:", state.resume.profile.summary);
-      console.log("Email:", state.resume.profile.email);
-      console.log("Phone:", state.resume.profile.phone);
-      console.log("Location:", state.resume.profile.location);
-      console.log("LinkedIn:", state.resume.profile.url);
-      onChange({ target: { name: "LastName", value: state.resume.profile.name || "" } });
-      onChange({ target: { name: "Description", value: state.resume.profile.summary || "" } });
-      onChange({ target: { name: "Email", value: state.resume.profile.email || "" } });
-      onChange({ target: { name: "Phone", value: state.resume.profile.phone || "" } });
-      onChange({ target: { name: "Address", value: state.resume.profile.location || "" } });
-      // onChange({ target: { name: "Socials.LinkedIn", value: state.resume.profile.url || "" } });
+    if (state.resume && state.resume.profile) {
+      const { name, summary, email, phone, location, url } = state.resume.profile;
+      const updatedFormData = { ...FormData };
+      updatedFormData["FirstName"] = name || "";
+      updatedFormData["Email"] = email || "";
+      updatedFormData["Phone"] = phone || "";
+      updatedFormData["Description"] = summary || "";
+      updatedFormData["Address"] = location || "";
       FormData["Socials"]["LinkedIn"] = state.resume.profile.url || "";
+      setFormData(updatedFormData);
+
     }
   };
 
   useEffect(() => {
     autoFillFormData();
-  }, []); // Run once when the component mounts
+  }, [initialData]); 
 
   return (
     <div className="Form">
