@@ -150,6 +150,15 @@ const PortfolioCard = ({
     setNavbarDesign(design);
   };
 
+  const handleUploadResume = () => {
+    if (localStorage.getItem('token')) {
+      Navigate('/resumeUploadPage')
+    } else {
+      Navigate('/resumeUploadPage2')
+    }
+    
+  }
+
   let selectedNavbarDesign;
   switch (navbarDesign) {
     case "NavbarDesign2":
@@ -251,6 +260,17 @@ const PortfolioCard = ({
           onClick={() => handleDesignChange("NavbarDesign3")}
         >
           Template 2
+        </button>
+        <button
+          style={{
+            ...buttonStyle,
+            background:
+              navbarDesign === "NavbarDesign3" ? "lightgreen" : "white",
+            color: navbarDesign === "NavbarDesign3" ? "white" : "black",
+          }}
+          onClick={handleUploadResume}
+        >
+          Upload Resume
         </button>
       </div>
       <div className="w-full pl-12 my-1">
