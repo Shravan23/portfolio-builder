@@ -6,11 +6,13 @@ import he from "he";
 import Form from "./Form";
 import Code from "./Code";
 import Preview from "./Preview";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import NavbarDesign2 from "./NavbarDesign2";
 import NavbarDesign3 from "./NavbarDesign3";
 import ReactDOMServer from "react-dom/server";
 import { connect } from "react-redux";
+import store from './store';
+
 
 const PortfolioCard = ({
   experienceTitle,
@@ -50,9 +52,10 @@ const PortfolioCard = ({
     fileDownloadUrl: null,
     PreviewMode: false,
   };
+  const {state} = useLocation()
   const [initialState, setInitialState] = useState(data);
-
-
+  console.log(state.resume)
+  
   const handleChange = (e) => {
     Object.keys(data.FormData).includes(e.target.name)
       ? setInitialState((prevState) => {
@@ -90,9 +93,10 @@ const PortfolioCard = ({
         document.getElementsByClassName("codefile")[0].innerHTML
       );
       console.log(JSON.stringify(initialState.FormData, null, 2));
+      // console.log('Initial State:', store.getState());
       const blob = new Blob([output]);
       const fileDownloadUrl2 = URL.createObjectURL(blob);
-
+     
       setInitialState((prevState) => {
         return {
           ...prevState,
@@ -149,6 +153,15 @@ const PortfolioCard = ({
   const handleDesignChange = (design) => {
     setNavbarDesign(design);
   };
+
+  const handleUploadResume = () => {
+    if (localStorage.getItem('token')) {
+      Navigate('/resumeUploadPage')
+    } else {
+      Navigate('/resumeUploadPage2')
+    }
+    
+  }
 
   let selectedNavbarDesign;
   switch (navbarDesign) {
@@ -226,6 +239,8 @@ const PortfolioCard = ({
     marginTop: "20px",
   };
 
+  
+
   return (
     <div className="App w-full overflow-y-scroll  dark:bg-black dark:text-white">
       {console.log("hi" + selectedDesign)}
@@ -252,6 +267,17 @@ const PortfolioCard = ({
         >
           Template 2
         </button>
+        <button
+          style={{
+            ...buttonStyle,
+            background:
+              navbarDesign === "NavbarDesign3" ? "lightgreen" : "white",
+            color: navbarDesign === "NavbarDesign3" ? "white" : "black",
+          }}
+          onClick={handleUploadResume}
+        >
+          Upload Resume
+        </button>
       </div>
       <div className="w-full pl-12 my-1">
         <div className="flex flex-row">
@@ -261,6 +287,7 @@ const PortfolioCard = ({
                 FullName: `${initialState.FormData.FirstName} ${initialState.FormData.LastName}`,
                 ...initialState.FormData,
               }}
+              initialData={initialState.FormData}
               onChange={handleChange}
               isEducationEnabled={isEducationEnabled}
               isExperienceEnabled={isExperienceEnabled}

@@ -7,9 +7,11 @@ import InterestList from "../Form/Interests/InterestList";
 import ProjectList from "../Form/Projects/ProjectList";
 import SkillsList from "../Form/Skills/SkillsList";
 import { SectionTitle } from "./sectionTitle/sectionTitle";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 
-const Form = ({ FormData, onChange, isExperienceEnabled, isEducationEnabled, isSkillEnabled, isInterestEnabled, isAwardsEnabled,
-  isProjectEnabled,toggleProject,toggleExperience,toggleEducation,toggleSkill,toggleInterest,toggleAward }) => {
+const Form = ({ FormData, initialData, onChange, isExperienceEnabled, isEducationEnabled, isSkillEnabled, isInterestEnabled, isAwardsEnabled, isProjectEnabled,toggleProject,toggleExperience,toggleEducation,toggleSkill,toggleInterest,toggleAward,}) => {
+  const {state} = useLocation() 
   const Desc = {
     FirstName: [
       "text",
@@ -51,6 +53,22 @@ const Form = ({ FormData, onChange, isExperienceEnabled, isEducationEnabled, isS
     }
     return ""; // No special border color for unfilled section
   };
+  
+  const autoFillFormData = () => {
+    if (initialData && Object.keys(initialData).length > 0) {
+      onChange({ target: { name: "LastName", value: state.resume.profile.name || "" } });
+      onChange({ target: { name: "Description", value: state.resume.profile.summary || "" } });
+      onChange({ target: { name: "Email", value: state.resume.profile.email || "" } });
+      onChange({ target: { name: "Phone", value: state.resume.profile.phone || "" } });
+      onChange({ target: { name: "Address", value: state.resume.profile.location || "" } });
+      // onChange({ target: { name: "Socials", value: state.resume.profile.url || "" } });
+    }
+  };
+
+  useEffect(() => {
+    autoFillFormData();
+  }, []); // Run once when the component mounts
+
   return (
     <div className="Form">
       <h1 className="text-xl mb-2 font-bold">Personal Details</h1>
@@ -63,7 +81,7 @@ const Form = ({ FormData, onChange, isExperienceEnabled, isEducationEnabled, isS
               Type={Desc[fd][0]}
               Id={fd}
               Desc={Desc[fd][2]}
-              Value={FormData[fd]}
+              Value={FormData[fd]} 
               Placeholder={`Please Enter your ${Desc[fd][1]}`}
               onChange={fd === "FullName" ? () => {} : onChange}
               readOnly={fd === "FullName" ? true : undefined}
