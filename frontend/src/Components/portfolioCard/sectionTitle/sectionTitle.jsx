@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { updateExperience, updateSkills, updateAwards, updateInterests, updateEducation, updateProjects } from '../Form/Experience/actions';
+import { updateExperience, updateSkills, updateAwards, updateInterests, updateEducation, updateProjects } from '../../Form/Experience/actions';
 
 export const SectionTitle = ({ initialTitle, titleType }) => {
   const [isEditing, setIsEditing] = useState(false);

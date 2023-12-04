@@ -41,7 +41,10 @@ const Home = () => {
           </Carousel.Item>
         </Carousel>
       </div>
- 
+     {/* <div className="text-box2">
+        <div>Whether you're a seasoned professional or just starting, our platform ensures your work shines on any device. Responsive design means your portfolio looks stunning on desktops, tablets, and smartphones, providing a seamless experience for visitors wherever they are</div>
+
+      </div> */}
     </div>
   );
 };

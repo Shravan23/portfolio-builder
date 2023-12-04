@@ -103,3 +103,26 @@ color: #000;
       border-color: #000;
     }
   }
+
+  .text-box2 {
+    float: right;
+    width: 30%; /* Adjust the width as needed */
+    background-color: #f0f0f0; /* Grey background color */
+    padding: 20px;
+    border-radius: 5px;
+    margin-left: 20px; /* Add some margin between the carousel and text box */
+    font-size: 25px;
+    font-weight: 200;
+    color: rgb(18, 17, 17);
+    background-color: linear-gradient(to top, #995dc7 10%, #f6f3ff 100%);
+    /* background-color: #e3cfdd; */
+  }
+  
+  /* Home.css */
+  .text-box2 p {
+    color: #000; /* Black text color */
+    font-size: 24px; /* Adjust the font size as needed */
+    white-space: nowrap;
+    overflow: hidden;
+    animation: typing 3s steps(30, end), blink-caret 0.5s step-end infinite;
+  }

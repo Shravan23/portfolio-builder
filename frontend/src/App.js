@@ -8,9 +8,11 @@ import HomePage from './Components/Home/Home';
 import './App.css';
 import store from './redux/store';
 import AuthState from './context/auth/AuthState';
-import PortfolioCard from './Components/portfolioCard'; // Assuming you have a PortfolioCard component
-import ResumeUploadPage from './UploadResume/ResumeUploadPage'; // New ResumeUploadPage component
+import PortfolioCard from './Components/portfolioCard/portfolioCard'; 
+import ResumeUploadPage from './UploadResume/ResumeUploadPage'; 
 import LogoutH from './Components/Header/LogoutH';
+import ResumeUploadPage2 from './UploadResume/ResumeUploadPage'; 
+import PortfolioCard2 from './Components/portfolioCard/portfolioCard'; 
 
 const HeaderLayout = ({ children, useLogoutHeader }) => (
   <>
@@ -46,6 +48,14 @@ function App() {
               <Route
                 path="/resumeUploadPage"
                 element={<HeaderLayout useLogoutHeader>{<ResumeUploadPage />}</HeaderLayout>}
+              />
+               <Route
+                path="/resumeUploadPage2"
+                element={<HeaderLayout><ResumeUploadPage2 /></HeaderLayout>}
+              />
+              <Route
+                path="/PortfolioCard2"
+                element={<HeaderLayout><PortfolioCard2 /></HeaderLayout>}
               />
             </Routes>
           </div>

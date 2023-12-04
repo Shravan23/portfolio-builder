@@ -1,11 +1,11 @@
-import FormGroup from "./Bootstrap/FormGroup";
-import SocialMedia from "./Bootstrap/SocialMedia";
-import AwardList from "./Form/Awards/AwardList";
-import EducationList from "./Form/Education/EducationList";
-import ExperienceList from "./Form/Experience/ExperienceList";
-import InterestList from "./Form/Interests/InterestList";
-import ProjectList from "./Form/Projects/ProjectList";
-import SkillsList from "./Form/Skills/SkillsList";
+import FormGroup from "../Bootstrap/FormGroup";
+import SocialMedia from "../Bootstrap/SocialMedia";
+import AwardList from "../Form/Awards/AwardList";
+import EducationList from "../Form/Education/EducationList";
+import ExperienceList from "../Form/Experience/ExperienceList";
+import InterestList from "../Form/Interests/InterestList";
+import ProjectList from "../Form/Projects/ProjectList";
+import SkillsList from "../Form/Skills/SkillsList";
 import { SectionTitle } from "./sectionTitle/sectionTitle";
 
 const Form = ({ FormData, onChange, isExperienceEnabled, isEducationEnabled, isSkillEnabled, isInterestEnabled, isAwardsEnabled,
