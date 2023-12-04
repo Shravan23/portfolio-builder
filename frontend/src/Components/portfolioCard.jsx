@@ -51,33 +51,7 @@ const PortfolioCard = ({
     PreviewMode: false,
   };
   const [initialState, setInitialState] = useState(data);
-  const toggleHeader = () => {
-    setInitialState((prevState) => {
-      return {
-        ...prevState,
-        Dark: !initialState.Dark,
-      };
-    });
-  };
 
-  // to store previous theme on refresh
-  useEffect(() => {
-    if (localStorage.theme === "dark") {
-      document.documentElement.classList.add("dark");
-      toggleHeader();
-    }
-  }, []);
-
-  // toggle theme by adding/removing dark as class on page
-  useEffect(() => {
-    if (!initialState.Dark) {
-      document.documentElement.classList.add("dark");
-      localStorage.theme = "dark";
-    } else {
-      document.documentElement.classList.remove("dark");
-      localStorage.theme = "light";
-    }
-  }, [initialState.Dark]);
 
   const handleChange = (e) => {
     Object.keys(data.FormData).includes(e.target.name)
@@ -115,6 +89,7 @@ const PortfolioCard = ({
       let output = he.decode(
         document.getElementsByClassName("codefile")[0].innerHTML
       );
+      console.log(JSON.stringify(initialState.FormData, null, 2));
       const blob = new Blob([output]);
       const fileDownloadUrl2 = URL.createObjectURL(blob);
 
@@ -311,7 +286,6 @@ const PortfolioCard = ({
                 } bg-green-700 text-white mx-2 p-3`}
                 onClick={() => {
                   download();
-                  console.log(PortfolioCard);
                 }}
                 download={"portfolio.html"}
                 href={initialState.fileDownloadUrl}
