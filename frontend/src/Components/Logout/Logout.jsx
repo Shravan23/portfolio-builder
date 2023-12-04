@@ -21,7 +21,7 @@ const Header = () => {
     } catch (error) {
       console.log(error)
     }
-    localStorage.setItem("token", null);
+    localStorage.setItem("token", "");
   };
 
   return (
