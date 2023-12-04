@@ -56,12 +56,19 @@ const Form = ({ FormData, initialData, onChange, isExperienceEnabled, isEducatio
   
   const autoFillFormData = () => {
     if (initialData && Object.keys(initialData).length > 0) {
+      console.log("Name:", state.resume.profile.name);
+      console.log("Summary:", state.resume.profile.summary);
+      console.log("Email:", state.resume.profile.email);
+      console.log("Phone:", state.resume.profile.phone);
+      console.log("Location:", state.resume.profile.location);
+      console.log("LinkedIn:", state.resume.profile.url);
       onChange({ target: { name: "LastName", value: state.resume.profile.name || "" } });
       onChange({ target: { name: "Description", value: state.resume.profile.summary || "" } });
       onChange({ target: { name: "Email", value: state.resume.profile.email || "" } });
       onChange({ target: { name: "Phone", value: state.resume.profile.phone || "" } });
       onChange({ target: { name: "Address", value: state.resume.profile.location || "" } });
-      // onChange({ target: { name: "Socials", value: state.resume.profile.url || "" } });
+      // onChange({ target: { name: "Socials.LinkedIn", value: state.resume.profile.url || "" } });
+      FormData["Socials"]["LinkedIn"] = state.resume.profile.url || "";
     }
   };
 
