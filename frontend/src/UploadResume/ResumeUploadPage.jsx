@@ -3,12 +3,12 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { GrUpload } from 'react-icons/gr';
 import { parseResumeFromPdf } from "../Components/ResumeParser/parser";
+import './ResumeUploadPage.css'; // Import your CSS file
 
 const ResumeUploadPage = () => {
   const navigate = useNavigate();
   const fileInputRef = useRef(null);
   const [selectedFile, setSelectedFile] = useState(null);
-  const [resume, setResume] = useState(null);
 
   const handleFileChange = (event) => {
     // Handle file changes and update the selectedFile state
@@ -17,13 +17,12 @@ const ResumeUploadPage = () => {
     if (file && file.type === "application/pdf") {
       setSelectedFile(file);
     } else {
-      alert("Only PDF files are allowed - working");
-      fileInputRef.current.value = null; // Reset the input if not a PDF
+      alert("Only PDF files are allowed");
+      fileInputRef.current.value = null;
     }
   };
 
   const handleUploadResume = () => {
-    // Trigger the file input programmatically
     fileInputRef.current.click();
   };
 
@@ -46,9 +45,7 @@ const ResumeUploadPage = () => {
   }
 
   const handleRemoveFile = () => {
-    // Remove the selected file
     setSelectedFile(null);
-    // Clear the file input
     fileInputRef.current.value = null;
   };
 
@@ -97,16 +94,15 @@ const ResumeUploadPage = () => {
         ref={fileInputRef}
         onChange={handleFileChange}
       />
-      <div style={{ textAlign: 'center', marginBottom: '20px' }}>
-        <button onClick={handleUploadResume} style={{ borderRadius: '15px', padding: '10px 20px', fontSize: '16px' }}>
+      <div className="upload-btn-container">
+        <button onClick={handleUploadResume} className="upload-btn">
           <GrUpload />
         </button>
       </div>
       {selectedFile && (
-        <div>
+        <div className="file-info">
           <p>Selected File: {selectedFile.name}</p>
-          {/* <button onClick={onImportClick} style={{ borderRadius: '15px', padding: '10px 20px', fontSize: '16px' }}>Import and Continue</button> */}
-          <button onClick={handleRemoveFile} style={{ borderRadius: '15px', padding: '10px 20px', fontSize: '16px' }}>Remove File</button>
+          <button onClick={handleRemoveFile} className="action-btn">Remove File</button>
         </div>
       )}
 
