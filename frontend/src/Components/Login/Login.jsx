@@ -32,7 +32,11 @@ const Login = () => {
       console.log(response)
       if (response.status) {
         localStorage.setItem("token",response.data.token)
-        if(response.data.isFirstLogin || response.data.userData=={}){
+        console.log('Hello - ',response.data.userData);
+        console.log(response.data.userData=={})
+        console.log('Stringed data - ',JSON.stringify(response.data.userData));
+        console.log(JSON.stringify(response.data.userData)=='{}');
+        if(response.data.isFirstLogin || Object.keys(response.data.userData).length){
           navigate("/resumeUploadPage")
         } else {
           navigate("/PortfolioCard")

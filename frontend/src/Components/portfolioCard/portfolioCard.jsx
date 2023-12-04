@@ -26,25 +26,29 @@ const PortfolioCard = ({
 }) => {
   const Navigate = useNavigate();
 
+  
+  const {state} = useLocation()
+  console.log(state.resume)
+  
   const data = {
     Dark: true,
     FormData: {
-      FirstName: "",
+      FirstName: state.resume.profile.name,
       LastName: "",
       Thubmnail: "",
-      URL: "",
-      Description: "",
+      URL: state.resume.profile.url,
+      Description: state.resume.profile.summary || "",
       Keywords: "",
-      Address: "",
-      Phone: "",
-      Email: "",
+      Address: state.resume.profile.location || "",
+      Phone: state.resume.profile.phone || "",
+      Email: state.resume.profile.email || "",
       Colour: "#5538BC",
       Socials: {
         Facebook: "",
         WhatsApp: "",
         Instagram: "",
         Twitter: "",
-        LinkedIn: "",
+        LinkedIn: state.resume.profile.url || "",
         GitHub: "",
         StackOverflow: "",
       },
@@ -52,9 +56,7 @@ const PortfolioCard = ({
     fileDownloadUrl: null,
     PreviewMode: false,
   };
-  const {state} = useLocation()
   const [initialState, setInitialState] = useState(data);
-  console.log(state.resume)
   
   const handleChange = (e) => {
     Object.keys(data.FormData).includes(e.target.name)
@@ -269,10 +271,7 @@ const PortfolioCard = ({
         </button>
         <button
           style={{
-            ...buttonStyle,
-            background:
-              navbarDesign === "NavbarDesign3" ? "lightgreen" : "white",
-            color: navbarDesign === "NavbarDesign3" ? "white" : "black",
+            ...buttonStyle
           }}
           onClick={handleUploadResume}
         >

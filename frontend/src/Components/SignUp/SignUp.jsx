@@ -66,7 +66,7 @@ const SignUp = () => {
               {...register('firstName', { 
                 required: 'First Name is Required',
                 pattern:{
-                  value: /^[A-Za-z]+$/,
+                  value: /^[A-Za-z ]+$/,
                   message:"only alphabets allowed"
                  }
                 })}
@@ -83,7 +83,7 @@ const SignUp = () => {
               {...register('lastName', { 
                 required: 'Last Name is Required',
                pattern:{
-                value: /^[A-Za-z]+$/,
+                value: /^[A-Za-z ]+$/,
                 message:"only alphabets allowed"
                }
                 })}

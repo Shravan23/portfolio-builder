@@ -22,7 +22,7 @@ const HeaderLayout = ({ children, useLogoutHeader }) => (
 );
 
 function App() {
-  localStorage.setItem("token", null);
+  localStorage.setItem("token", "");
   return (
     <Provider store={store}>
       <AuthState> 
