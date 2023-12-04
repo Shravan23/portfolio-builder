@@ -10,7 +10,7 @@ import store from './redux/store';
 import AuthState from './context/auth/AuthState';
 import PortfolioCard from './Components/portfolioCard/portfolioCard'; 
 import ResumeUploadPage from './UploadResume/ResumeUploadPage'; 
-import LogoutH from './Components/Header/LogoutH';
+import LogoutH from './Components/Logout/Logout';
 import ResumeUploadPage2 from './UploadResume/ResumeUploadPage'; 
 import PortfolioCard2 from './Components/portfolioCard/portfolioCard'; 
 
@@ -22,6 +22,7 @@ const HeaderLayout = ({ children, useLogoutHeader }) => (
 );
 
 function App() {
+  localStorage.setItem("token", null);
   return (
     <Provider store={store}>
       <AuthState>
