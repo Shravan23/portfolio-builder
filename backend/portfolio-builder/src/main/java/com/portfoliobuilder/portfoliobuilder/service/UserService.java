@@ -5,8 +5,6 @@ import com.portfoliobuilder.portfoliobuilder.dto.UserDto;
 import com.portfoliobuilder.portfoliobuilder.models.User;
 import com.portfoliobuilder.portfoliobuilder.models.UserData;
 import com.portfoliobuilder.portfoliobuilder.util.LoginMessage;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 
 public interface UserService {
