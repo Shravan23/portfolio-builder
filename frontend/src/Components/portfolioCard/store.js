@@ -7,6 +7,8 @@ import  awards  from "../Form/Awards/reducers";
 import  interests  from "../Form/Interests/reducers";
 import  skills  from "../Form/Skills/reducers";
 import projects from '../Form/Projects/reducer';
+import React, { useEffect } from 'react';
+
 
 const allreducers = {
     experiences:experiences,
@@ -18,21 +20,11 @@ const allreducers = {
     title : titlesReducer
 };
 
+
 const rootReducer = combineReducers(allreducers);
 
 const store=configureStore({reducer: rootReducer});
-const autoFillFormData = () => {
-    if (initialData && Object.keys(initialData).length > 0) {
-      onChange({ target: { name: "LastName", value: state.resume.profile.name || "" } });
-      onChange({ target: { name: "Description", value: state.resume.profile.summary || "" } });
-      onChange({ target: { name: "Email", value: state.resume.profile.email || "" } });
-      onChange({ target: { name: "Phone", value: state.resume.profile.phone || "" } });
-      onChange({ target: { name: "Address", value: state.resume.profile.location || "" } });
-      // onChange({ target: { name: "Socials", value: state.resume.profile.url || "" } });
-    }
-  };
 
-  useEffect(() => {
-    autoFillFormData();
-  }, []); // Run once when the component mounts
+
+  
 export default store;
