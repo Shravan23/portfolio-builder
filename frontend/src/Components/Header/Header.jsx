@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import './Header.css'; // You can create a separate CSS file for the header styles
-import logo from '../Assets/resume genie logo.jpg'
+import logo from '../Assets/resume genie logo.jpg';
 
 const Header = () => {
   const location = useLocation();
