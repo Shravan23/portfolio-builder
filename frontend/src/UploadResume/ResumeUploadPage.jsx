@@ -52,6 +52,7 @@ const ResumeUploadPage = () => {
   const onImportClick = async () => {
     if (selectedFile) {
       try {
+        console.log(typeof(selectedFile));
         const fileUrl = URL.createObjectURL(selectedFile);
         const resumeData = await parseResumeFromPdf(fileUrl);
         URL.revokeObjectURL(fileUrl);

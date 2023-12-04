@@ -269,10 +269,7 @@ const PortfolioCard = ({
         </button>
         <button
           style={{
-            ...buttonStyle,
-            background:
-              navbarDesign === "NavbarDesign3" ? "lightgreen" : "white",
-            color: navbarDesign === "NavbarDesign3" ? "white" : "black",
+            ...buttonStyle
           }}
           onClick={handleUploadResume}
         >
