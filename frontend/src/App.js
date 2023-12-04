@@ -11,11 +11,11 @@ import AuthState from './context/auth/AuthState';
 import LogoutPage from './Components/Logout/Logout';
 import PortfolioCard from './Components/portfolioCard'; // Assuming you have a PortfolioCard component
 import ResumeUploadPage from './UploadResume/ResumeUploadPage'; // New ResumeUploadPage component
+import LogoutH from './Components/Header/LogoutH';
 
-// Layout component with the header
-const HeaderLayout = ({ children }) => (
+const HeaderLayout = ({ children, useLogoutHeader }) => (
   <>
-    <Header />
+    {useLogoutHeader ? <LogoutH /> : <Header />}
     {children}
   </>
 );
@@ -24,10 +24,10 @@ function App() {
   return (
     <Provider store={store}>
       <AuthState>
+       
         <Router>
           <div className="App">
             <Routes>
-              {/* Header layout for routes that need the header */}
               <Route
                 path="/"
                 element={<HeaderLayout>{<HomePage />}</HeaderLayout>}
@@ -40,13 +40,14 @@ function App() {
                 path="/signup"
                 element={<HeaderLayout>{<SignupPage />}</HeaderLayout>}
               />
-              {/* Routes without the header */}
-              <Route path="/portfolioCard" element={<HeaderLayout>{<PortfolioCard />}</HeaderLayout>} />
+              <Route
+                path="/portfolioCard"
+                element={<HeaderLayout useLogoutHeader>{<PortfolioCard />}</HeaderLayout>}
+              />
               <Route
                 path="/resumeUploadPage"
-                element={<HeaderLayout>{<ResumeUploadPage />}</HeaderLayout>}
+                element={<HeaderLayout useLogoutHeader>{<ResumeUploadPage />}</HeaderLayout>}
               />
-              {/* Add other routes as needed */}
             </Routes>
           </div>
         </Router>

@@ -29,4 +29,22 @@
     font-size: 20px;
   }
   
+  .header-top-logout {
+    position: relative;
+    left: 90rem;
+    top: 10px;
+  }
+  
+  .header-button-logout {
+    margin-right: 20px; /* Adjust margin as needed */
+  }
+
+  .header-button-logout button{
+    border-radius: 5px;
+  }
+  
+  .button:hover {
+    background-color: #0056b3; /* Change background color on hover */
+  }
+  
   
