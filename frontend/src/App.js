@@ -6,7 +6,7 @@ import LoginPage from './Components/Login/Login';
 import SignupPage from './Components/SignUp/SignUp';
 import HomePage from './Components/Home/Home';
 import './App.css';
-import store from './redux/store';
+import store from './Components/portfolioCard/store';
 import AuthState from './context/auth/AuthState';
 import PortfolioCard from './Components/portfolioCard/portfolioCard'; 
 import ResumeUploadPage from './UploadResume/ResumeUploadPage'; 
@@ -25,8 +25,7 @@ function App() {
   localStorage.setItem("token", null);
   return (
     <Provider store={store}>
-      <AuthState>
-       
+      <AuthState> 
         <Router>
           <div className="App">
             <Routes>
