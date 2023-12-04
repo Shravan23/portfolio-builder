@@ -8,7 +8,6 @@ import HomePage from './Components/Home/Home';
 import './App.css';
 import store from './redux/store';
 import AuthState from './context/auth/AuthState';
-import LogoutPage from './Components/Logout/Logout';
 import PortfolioCard from './Components/portfolioCard'; // Assuming you have a PortfolioCard component
 import ResumeUploadPage from './UploadResume/ResumeUploadPage'; // New ResumeUploadPage component
 import LogoutH from './Components/Header/LogoutH';
