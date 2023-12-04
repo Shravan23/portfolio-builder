@@ -40,11 +40,13 @@ const ResumeUploadPage = () => {
     <div
       style={{
         maxWidth: '400px',
-        margin: '100px auto',
         padding: '20px',
         borderRadius: '15px',
         border: '2px solid #00308F', 
         backgroundColor: '#ADD8E6',
+        position: 'relative',
+        top: '10rem',
+        left: '32rem'
       }}
     >
       <h2 style={{ color: '#00308F', marginLeft: '50px' }}>Upload Resume</h2>
