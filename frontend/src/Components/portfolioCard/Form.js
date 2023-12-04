@@ -10,23 +10,8 @@ import { SectionTitle } from "./sectionTitle/sectionTitle";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 
-const Form = ({ initialData: propInitialData, onChange, isExperienceEnabled, isEducationEnabled, isSkillEnabled, isInterestEnabled, isAwardsEnabled, isProjectEnabled,toggleProject,toggleExperience,toggleEducation,toggleSkill,toggleInterest,toggleAward,}) => {
-  const {state} = useLocation() 
-  const [initialData] = useState(propInitialData);
-  const [FormData, setFormData] = useState({
-    FirstName: "",
-    LastName: "",
-    Description: "",
-    Address: "",
-    Phone: "",
-    Email: "",
-    Colour: "",
-    Socials: {
-      LinkedIn: "",
-      GitHub: "",
-    },
-  });
-  
+const Form = ({ FormData, onChange, isExperienceEnabled, isEducationEnabled, isSkillEnabled, isInterestEnabled, isAwardsEnabled,
+  isProjectEnabled,toggleProject,toggleExperience,toggleEducation,toggleSkill,toggleInterest,toggleAward }) => {
   const Desc = {
     FirstName: [
       "text",
@@ -68,28 +53,9 @@ const Form = ({ initialData: propInitialData, onChange, isExperienceEnabled, isE
     }
     return ""; // No special border color for unfilled section
   };
-  const autoFillFormData = () => {
-    if (state.resume && state.resume.profile) {
-      const { name, summary, email, phone, location, url } = state.resume.profile;
-      const updatedFormData = { ...FormData };
-      updatedFormData["FirstName"] = name || "";
-      updatedFormData["Email"] = email || "";
-      updatedFormData["Phone"] = phone || "";
-      updatedFormData["Description"] = summary || "";
-      updatedFormData["Address"] = location || "";
-      FormData["Socials"]["LinkedIn"] = state.resume.profile.url || "";
-      setFormData(updatedFormData);
-
-    }
-  };
-
-  useEffect(() => {
-    autoFillFormData();
-  }, [initialData]); 
-
   return (
     <div className="Form">
-      <h1 className="text-xl mb-2 font-bold">Personal Details</h1>
+      <h1 className="text-xl mb-2 font-bold">Basic Info</h1>
       {Object.keys(FormData).map((fd) =>
         fd !== "Socials" ? (
           Object.keys(Desc).includes(fd) && (
@@ -99,8 +65,8 @@ const Form = ({ initialData: propInitialData, onChange, isExperienceEnabled, isE
               Type={Desc[fd][0]}
               Id={fd}
               Desc={Desc[fd][2]}
-              Value={FormData[fd]} 
-              Placeholder={`Please Enter your ${Desc[fd][1]}`}
+              Value={FormData[fd]}
+              Placeholder={`Enter something for ${Desc[fd][1]}`}
               onChange={fd === "FullName" ? () => {} : onChange}
               readOnly={fd === "FullName" ? true : undefined}
               borderColor={getBorderColor(fd)}
