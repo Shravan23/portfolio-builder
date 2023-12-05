@@ -1,4 +1,31 @@
 /* Logout.css */
+.header-top-Logout {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  background-color: white; 
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); 
+  z-index: 100; 
+  color: whitesmoke;
+  }
+
+  .Logout-link{
+    display: flex;
+    position: relative;
+    left: 88rem;
+  }
+  .Logout-link a{
+    text-decoration: none; /* Remove underline */
+    color: black; /* Set default text color */
+  }
+
+  .lo
+
 .page-container {
   position: relative;
   height: 100vh;
@@ -27,8 +54,8 @@ input[type="file"] {
 }
 
 
-button:hover {
-  background-color: #0056b3; /* Darker blue on hover */
+.header-top-Logout h4:hover {
+  color: blue; /* Set text color on hover */
 }
 
 p {

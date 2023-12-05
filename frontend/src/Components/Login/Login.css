@@ -106,10 +106,11 @@
     margin-top: 20px;
   }
   
+  
   .login-button button {
-    background-color: blue;
+    background-color: #3737d4;
     color: white;
-    padding: 20px 120px;
+    padding: 10px 55px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
