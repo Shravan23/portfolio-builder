@@ -1,7 +1,8 @@
+
 .container-login{
     display:flex;
     flex-direction: column;
-    margin: 50px auto;
+   /* margin: 100px auto;*/
     width:400px;
     background: #fff;
     padding: 20px;

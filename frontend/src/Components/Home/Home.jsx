@@ -2,13 +2,16 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Carousel } from 'react-bootstrap';
 import './Home.css';
-import showcase_icon from '../Assets/showcase.jpg';
+import showcase_icon from '../Assets/visibility2.jpg';
 import visibility_icon from '../Assets/visibility.jpg';
-import branding_icon from '../Assets/branding.png';
+import branding_icon from '../Assets/backjpg.jpg';
+
+
 
 const Home = () => {
     console.log("Home")
   return (
+    <div className="home-container-main">
     <div className="home-container">
       <div className="text-box">
         <p className="typing-text"> Welcome to Resume Genie </p>
@@ -19,30 +22,39 @@ const Home = () => {
           <Carousel.Item>
             <img src={showcase_icon} alt="Showcase" />
             <Carousel.Caption>
-              <h3>Showcase your work</h3>
-              <p>People in your industry will love to view your work.</p>
+              <h3 className="showcase-heading">Showcase your work</h3>
+              <p className="showcase-text">People in your industry will love to view your work.</p>
             </Carousel.Caption>
           </Carousel.Item>
 
           <Carousel.Item>
             <img src={visibility_icon} alt="Visibility" />
             <Carousel.Caption>
-              <h3>Increasing visibility</h3>
-              <p>Increase your online presence, and many people may discover your work.</p>
+              <h3 className="visibility-heading">Increasing visibility</h3>
+              <p className="visibility-text">Increase your online presence, and many people may discover your work.</p>
             </Carousel.Caption>
           </Carousel.Item>
 
           <Carousel.Item>
             <img src={branding_icon} alt="Branding" />
             <Carousel.Caption>
-              <h3>Build your personal brand.</h3>
-              <p>Your personal brand sets you apart from others and showcases your unique style.</p>
+              <h3 className="branding-heading">Build your personal brand.</h3>
+              <p className="branding-text">Your personal brand showcases your unique style.</p>
             </Carousel.Caption>
           </Carousel.Item>
         </Carousel>
       </div>
- 
+     
+       
+
     </div>
+      <div className="additional-text-box">
+     <p>Whether you're a seasoned professional or just starting out, our platform ensures ease of work for all, ensuring a seamless experience.</p>
+     <Link to="/resumeUploadPage2" className="custom-button">Generate website without account</Link>
+   </div> 
+   </div>
+
+  
   );
 };
 

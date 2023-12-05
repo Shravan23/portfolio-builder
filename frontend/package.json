@@ -10,10 +10,13 @@
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "axios": "^1.6.2",
     "bootstrap": "^5.3.2",
     "file-saver": "^2.0.5",
     "jszip": "^3.10.1",
     "moment": "^2.29.4",
+    "pdfjs": "^2.5.0",
+    "pdfjs-dist": "^3.7.107",
     "react": "^18.2.0",
     "react-bootstrap": "2.9.1",
     "react-dom": "^18.2.0",
@@ -32,7 +35,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "e2e": "cypress open"
   },
   "eslintConfig": {
     "extends": [
@@ -51,5 +55,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "chance": "^1.1.11",
+    "cypress": "^13.6.0"
   }
 }

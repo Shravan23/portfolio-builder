@@ -148,10 +148,20 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   height: 100vh;
-  background: linear-gradient(rgb(176, 224, 226),rgb(174, 219, 222));
+  background: linear-gradient(rgb(201, 221, 222),rgb(198, 223, 224));
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.header-top-logout {
+  position: relative;
+  left: 90rem;
+  top: 10px;
+}
+
+.header-button-logout button{
+  border-radius: 5px;
 }

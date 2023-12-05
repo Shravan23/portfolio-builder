@@ -37,11 +37,41 @@ max-height: 300px;
 margin: 0 auto;
 }
 
-
+/*
 .carousel-caption p {
 font-size: 13px;
 color: #000;
+}*/
+
+
+
+/* Add these styles to your existing CSS file */
+.showcase-heading {
+  color: black;
 }
+
+.showcase-text {
+  color: #36454F;
+}
+
+.visibility-heading {
+  color: black;
+}
+
+.visibility-text {
+  color: #36454F;
+}
+
+.branding-heading {
+  color:black;
+}
+
+.branding-text {
+  color:black;
+}
+
+
+
 
 
 .content {
@@ -60,12 +90,16 @@ color: #000;
   /* Home.css */
 .carousel-container {
     float: right;
-    width: 70%; /* Adjust the width as needed */
+    width: 70%; 
   }
-  
+
+ 
+
+
   .text-box {
     float: right;
     width: 30%; /* Adjust the width as needed */
+    
     background-color: #f0f0f0; /* Grey background color */
     padding: 20px;
     border-radius: 5px;
@@ -79,8 +113,8 @@ color: #000;
   
   /* Home.css */
   .text-box p {
-    color: #000; /* Black text color */
-    font-size: 24px; /* Adjust the font size as needed */
+    color: #000; 
+    font-size: 24px; 
     white-space: nowrap;
     overflow: hidden;
     animation: typing 3s steps(30, end), blink-caret 0.5s step-end infinite;
@@ -103,3 +137,74 @@ color: #000;
       border-color: #000;
     }
   }
+
+  .additional-text-box {
+    float: right;
+    height: 310px;
+    width: 80%; 
+    background-image: url('../Assets/genimg.jpg');
+    padding: 20px;
+    border-radius: 5px;
+    margin-right: 200px;
+    margin-top: 200px;
+    font-size: 2px;
+    font-weight: 200;
+    color: rgb(18, 17, 17);
+    background-color: linear-gradient(to top, #995dc7 10%, #f6f3ff 100%);
+    position: relative;
+  }
+  
+  .additional-text-box p {
+    color: #000;
+    font-size: 35px;
+    overflow: hidden;
+    
+  }
+
+  .home-container-main{
+   
+    height:1000px;
+  }
+  
+  
+  
+  @media (max-width: 768px) {
+    .text-box {
+      width: 100%;
+      margin-left: 0;
+    }
+  
+    .additional-text-box {
+      width: 100%;
+      margin-right: 0;
+    }
+  }
+
+
+.custom-button {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  text-decoration: none; /* Added to remove underline */
+}
+
+/* Additional styles for the link */
+.custom-button:hover {
+  background-color: #45a049; /* Change color on hover if desired */
+  text-decoration: none; /* Ensure no underline on hover */
+}
+
+.custom-button:focus {
+  outline: none; /* Remove focus outline */
+}
+
+/* Increase font size */
+.custom-button {
+  font-size: 20px; /* Adjust the font size as needed */
+}

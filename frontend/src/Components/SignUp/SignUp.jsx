@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import './SignUp.css';
 import user_icon from '../Assets/person.png';
 import email_icon from '../Assets/email.png';
@@ -10,8 +11,36 @@ const SignUp = () => {
   const { register, handleSubmit, formState: { errors }, reset } = useForm();
   const [action, setAction] = useState('SignUp');
   const navigate = useNavigate(); // Access the navigate function
-  const onSubmit = (data) => {
-    console.log('Form data:', data);
+  const [signUpError, setSignUpError] = useState("");
+  const [responseMessage, setResponseMessage] = useState("");
+
+  const onSubmit = async (data) => {
+    try {
+      console.log('Inside try');
+      const response = await axios.post(
+          'https://portfolio-builder-backend.onrender.com/v1/user/signup',
+          {
+              firstName: data.firstName,
+              lastName: data.lastName,
+              email: data.email,
+              password: data.password
+          },
+          {
+              headers: {
+                  'Content-Type': 'application/json',
+              },
+          }
+      );
+      setResponseMessage(response.data);  // Display success message
+      console.log(response)
+      navigate("/")
+
+      
+    } catch (error) {
+      console.error('Error:', error.response ? error.response.data : error.message);
+      setResponseMessage(`Signup failed. Please try again${error.response.data}`); 
+      setSignUpError("Signup failed. Please try again.");  // Display error message
+  }
     reset();
   };
 
@@ -37,7 +66,7 @@ const SignUp = () => {
               {...register('firstName', { 
                 required: 'First Name is Required',
                 pattern:{
-                  value: /^[A-Za-z]+$/,
+                  value: /^[A-Za-z ]+$/,
                   message:"only alphabets allowed"
                  }
                 })}
@@ -54,7 +83,7 @@ const SignUp = () => {
               {...register('lastName', { 
                 required: 'Last Name is Required',
                pattern:{
-                value: /^[A-Za-z]+$/,
+                value: /^[A-Za-z ]+$/,
                 message:"only alphabets allowed"
                }
                 })}

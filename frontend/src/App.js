@@ -6,28 +6,29 @@ import LoginPage from './Components/Login/Login';
 import SignupPage from './Components/SignUp/SignUp';
 import HomePage from './Components/Home/Home';
 import './App.css';
-import store from './redux/store';
+import store from './Components/portfolioCard/store';
 import AuthState from './context/auth/AuthState';
-import LogoutPage from './Components/Logout/Logout';
-import PortfolioCard from './Components/portfolioCard'; // Assuming you have a PortfolioCard component
-import ResumeUploadPage from './UploadResume/ResumeUploadPage'; // New ResumeUploadPage component
+import PortfolioCard from './Components/portfolioCard/portfolioCard'; 
+import ResumeUploadPage from './UploadResume/ResumeUploadPage'; 
+import LogoutH from './Components/Logout/Logout';
+import ResumeUploadPage2 from './UploadResume/ResumeUploadPage'; 
+import PortfolioCard2 from './Components/portfolioCard/portfolioCard'; 
 
-// Layout component with the header
-const HeaderLayout = ({ children }) => (
+const HeaderLayout = ({ children, useLogoutHeader }) => (
   <>
-    <Header />
+    {useLogoutHeader ? <LogoutH /> : <Header />}
     {children}
   </>
 );
 
 function App() {
+  localStorage.setItem("token", "");
   return (
     <Provider store={store}>
-      <AuthState>
+      <AuthState> 
         <Router>
           <div className="App">
             <Routes>
-              {/* Header layout for routes that need the header */}
               <Route
                 path="/"
                 element={<HeaderLayout>{<HomePage />}</HeaderLayout>}
@@ -40,13 +41,22 @@ function App() {
                 path="/signup"
                 element={<HeaderLayout>{<SignupPage />}</HeaderLayout>}
               />
-              {/* Routes without the header */}
-              <Route path="/portfolioCard" element={<HeaderLayout>{<PortfolioCard />}</HeaderLayout>} />
+              <Route
+                path="/portfolioCard"
+                element={<HeaderLayout useLogoutHeader>{<PortfolioCard />}</HeaderLayout>}
+              />
               <Route
                 path="/resumeUploadPage"
-                element={<HeaderLayout>{<ResumeUploadPage />}</HeaderLayout>}
+                element={<HeaderLayout useLogoutHeader>{<ResumeUploadPage />}</HeaderLayout>}
               />
-              {/* Add other routes as needed */}
+               <Route
+                path="/resumeUploadPage2"
+                element={<HeaderLayout><ResumeUploadPage2 /></HeaderLayout>}
+              />
+              <Route
+                path="/PortfolioCard2"
+                element={<HeaderLayout><PortfolioCard2 /></HeaderLayout>}
+              />
             </Routes>
           </div>
         </Router>

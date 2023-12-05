@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import './Header.css'; // You can create a separate CSS file for the header styles
-import logo from '../Assets/resume genie logo.jpg'
+import logo from '../Assets/resume genie logo.jpg';
 
 const Header = () => {
   const location = useLocation();
@@ -15,10 +15,10 @@ const Header = () => {
       </div>
       <div className="header-button">
         <Link to="/login" className={location.pathname === '/login' ? 'active' : ''}>
-          <button>Login</button>
+          <button style={{borderRadius: '5px'}}>Login</button>
         </Link>
         <Link to="/signup" className={location.pathname === '/signup' ? 'active' : ''}>
-         <button>Signup</button>
+         <button style={{borderRadius: '5px'}} >Signup</button>
         </Link>
       </div>
     </div>

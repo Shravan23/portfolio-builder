@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import './Login.css';
 import email_icon from '../Assets/email.png';
 import password_icon from '../Assets/password.png';
@@ -8,9 +10,48 @@ import { useForm } from 'react-hook-form';
 const Login = () => {
   const { register, handleSubmit, formState: { errors }, reset } = useForm();
   const [action, setAction] = useState('Login');
+  const [loginError, setLoginError] = useState("");
+  const [responseMessage, setResponseMessage] = useState("");
+  const navigate = useNavigate();
 
-  const onSubmit = (data) => {
-    console.log('Form data:', data);
+  const onSubmit = async (data) => {
+    console.log('submit clicked');
+    try {
+      const response = await axios.post(
+        'https://portfolio-builder-backend.onrender.com/v1/user/login',
+        {
+          email: data.email,
+          password: data.password
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+      console.log(response)
+      if (response.status) {
+        localStorage.setItem("token",response.data.token)
+        console.log('Hello - ',response.data.userData);
+        console.log(response.data.userData=={})
+        console.log('Stringed data - ',JSON.stringify(response.data.userData));
+        console.log(JSON.stringify(response.data.userData)=='{}');
+        if(response.data.isFirstLogin || Object.keys(response.data.userData).length){
+          navigate("/resumeUploadPage")
+        } else {
+          navigate("/PortfolioCard")
+        }
+        setResponseMessage(response.message);
+        console.log('Success:', response.data);
+      } else {
+        setResponseMessage(response.data.message)
+      }
+    } catch (error) {
+      console.log(error)
+      setResponseMessage(error);
+      // console.error('Error:', error.response ? error.response.data : error.message);
+      setLoginError("Login failed. Please try again.");  // Display error message
+    }
     reset();
   };
 

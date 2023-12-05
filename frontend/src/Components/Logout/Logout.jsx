@@ -1,33 +1,40 @@
-import React, { useState } from 'react';
-import './Logout.css';
+import React from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import axios from 'axios';
+import '../Header/Header.css';
 
-const Logout = () => {
-  const [selectedFile, setSelectedFile] = useState(null);
-  const [fileUploadMessage, setFileUploadMessage] = useState('');
+const Header = () => {
+  const location = useLocation();
+  const handleLogout = async () => {
+    try {
+      const response = await axios.post(
+        'https://portfolio-builder-backend.onrender.com/v1/user/login',
+        {
+        },
+        {
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
 
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    setSelectedFile(file);
-  };
-
-  const handleUploadFile = () => {
-    if (selectedFile) {
-      setFileUploadMessage('File has been uploaded successfully.');
+    } catch (error) {
+      console.log(error)
     }
+    localStorage.setItem("token", "");
   };
 
   return (
-    <div className="page-container">
-      <button className="logout-button">Logout</button>
-      <div className="file-upload-container">
-        <div className="Header-logout"><b>Welcome to Resume Genie</b></div>
-        <p><b>Web Page is still under construction</b></p>
-        <input type="file" accept=".pdf, .jpg, .png" onChange={handleFileChange} />
-        <button onClick={handleUploadFile}>Upload File</button>
-        {fileUploadMessage && <p>{fileUploadMessage}</p>}
+    <div className="header-top-Logout" style={{ position: 'relative', float: 'right', right: '2rem', top: '0.7rem', }}>
+      <div className="header-button-Logout">
+        <Link to="/">
+          <button style={{ borderRadius: '5px' }}>Logout</button>
+        </Link>
       </div>
     </div>
   );
 };
 
-export default Logout;
+export default Header;
+
+// style={{position: 'relative', float:'right', margin:'5px', bottom: '6rem'}}
