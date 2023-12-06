@@ -28,27 +28,27 @@ const PortfolioCard = ({
 
   
   const {state} = useLocation()
-  console.log(state.resume)
+  // console.log(state.resume)
   
   const data = {
     Dark: true,
     FormData: {
-      FirstName: state.resume.profile.name,
+      FirstName: state?.resume.profile.name || "",
       LastName: "",
       Thubmnail: "",
-      URL: state.resume.profile.url,
-      Description: state.resume.profile.summary || "",
+      URL: state?.resume.profile.url || "",
+      Description: state?.resume.profile.summary || "",
       Keywords: "",
-      Address: state.resume.profile.location || "",
-      Phone: state.resume.profile.phone || "",
-      Email: state.resume.profile.email || "",
+      Address: state?.resume.profile.location || "",
+      Phone: state?.resume.profile.phone || "",
+      Email: state?.resume.profile.email || "",
       Colour: "#5538BC",
       Socials: {
         Facebook: "",
         WhatsApp: "",
         Instagram: "",
         Twitter: "",
-        LinkedIn: state.resume.profile.url || "",
+        LinkedIn: state?.resume.profile.url || "",
         GitHub: "",
         StackOverflow: "",
       },
@@ -238,7 +238,7 @@ const PortfolioCard = ({
   const containerStyle = {
     display: "flex",
     justifyContent: 'flex-start',
-    marginTop: "20px",
+    marginTop: "85px",
   };
 
   
@@ -251,7 +251,7 @@ const PortfolioCard = ({
           style={{
             ...buttonStyle,
             background:
-              navbarDesign === "NavbarDesign2" ? "darkblue" : "white",
+              navbarDesign === "NavbarDesign2" ? "#5858dc" : "white",
             color: navbarDesign === "NavbarDesign2" ? "white" : "black",
           }}
           onClick={() => handleDesignChange("NavbarDesign2")}
@@ -270,9 +270,7 @@ const PortfolioCard = ({
           Template 2
         </button>
         <button
-          style={{
-            ...buttonStyle
-          }}
+          style={{...buttonStyle, background:'rgb(42 129 58)', color: 'white'}}
           onClick={handleUploadResume}
         >
           Upload Resume
@@ -317,6 +315,7 @@ const PortfolioCard = ({
                 href={initialState.fileDownloadUrl}
                 disabled={initialState.PreviewMode}
                 title="Go to the Code View to download."
+                style={{marginTop:'25px'}}
               >
                 Download
               </button>

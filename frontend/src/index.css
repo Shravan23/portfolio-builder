@@ -84,6 +84,10 @@ html,body,#root,.app{
 
 .p-3 {
   padding: 0.75rem;
+  background: white;
+  color: #5858dc;
+  font-size: large;
+  font-weight: 500;
 }
 
 .text-xl {
@@ -134,11 +138,12 @@ ol, ul, menu {
 }
 
 .h-\[85vh\] {
-  height: 85vh;
+  height: 200vh;
 }
 
 .w-full {
   width: 100%;
+  background: white;
 }
 body {
   margin: 0;
@@ -156,12 +161,11 @@ code {
     monospace;
 }
 
-.header-top-logout {
-  position: relative;
-  left: 90rem;
-  top: 10px;
+button{
+  color: blue;
+  background-color: white;
 }
 
-.header-button-logout button{
-  border-radius: 5px;
+button:hover {
+color:lightblue;
 }
