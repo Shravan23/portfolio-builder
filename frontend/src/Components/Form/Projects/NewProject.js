@@ -117,7 +117,7 @@ const NewProjectForm = ({ onCreatePressed,onChangeDesign }) => {
         onChange={handleChange}
       />
 
-      <div className="text-right">
+      <div className="text-right" style={{maxWidth: '58px'}}>
         <button
           className="btn btn-success btn-sm rounded-circle"
           onClick={handleSubmit}

@@ -96,7 +96,7 @@ const NewEducationForm = ({ educations = [], onCreatePressed }) => {
         </div>
       </div>
 
-      <div className="text-right">
+      <div className="text-right" style={{maxWidth: '58px'}}>
         <button
           className="btn btn-success btn-sm rounded-circle cursor-pointer rounded-full w-7 h-7 bg-green-400 text-white"
           disabled={

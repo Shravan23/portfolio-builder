@@ -21,7 +21,7 @@ const EducationCard = ({ education, onRemovePressed, onEditPressed }) => {
     setEditedEducation(education);
   };
   return (
-    <div className="flex-col mb-3 p-3 rounded-lg shadow-lg p-6 relative w-[60%] row">
+    <div className="card dark:bg-lime-300 dark:text-black bg-light pb-1 pr-1 mb-1 small">
       {
         <>
           <div className={`d-flex justify-content-end ${isEditing ? "d-none" : ""}`}>

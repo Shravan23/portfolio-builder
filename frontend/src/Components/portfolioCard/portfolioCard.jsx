@@ -35,13 +35,13 @@ const PortfolioCard = ({
 
 
   const { state } = useLocation()
-  console.log(state.resume)
+  // console.log(state.resume)
 
 
   useEffect(()=>{
-    addAllExperiences(state.resume.workExperiences)
-    addAllEducations(state.resume.educations)
-    addAllProjects(state.resume.projects)
+    addAllExperiences(state?.resume.workExperiences)
+    addAllEducations(state?.resume.educations)
+    addAllProjects(state?.resume.projects)
   }, [])
  
 
@@ -503,42 +503,48 @@ const PortfolioCard = ({
 
 const mapDispatchToProps = (dispatch) => ({
   addAllExperiences: (exp) => {
-   exp = exp.map((item) => {
+   exp = exp?.map((item) => {
       return {experience : item}
     })
+    if(exp){
     dispatch(createInitialExperience(exp))
+    }
   },
 
   addAllEducations : (edu) => {
-    edu = edu.map((item) => {
+    edu = edu?.map((item) => {
       return {education : item}
     })
+    if(edu){
     dispatch(setInitialEducation(edu))
+    }
   },
 
   addAllProjects : (projects) => {
-    projects = projects.map((item) => {
+    projects = projects?.map((item) => {
       return {projects : item}
     })
+    if(projects){
     dispatch(createInitialProjects(projects))
+    }
   }
 
 });
 
 const mapStateToProps = (state) => ({
-  experiences: state.experiences,
-  educations: state.educations,
-  awards: state.awards,
-  interests: state.interests,
-  skills: state.skills.selectedSkills,
-  experienceTitle: state.title.experienceTitle,
-  skillsTitle: state.title.skillsTitle,
-  interestsTitle: state.title.interestsTitle,
-  awardsTitle: state.title.awardsTitle,
-  educationTitle: state.title.educationTitle,
-  projectsTitle: state.title.projectsTitle,
-  selectedDesign: state.projects.selectedDesign,
-  projects : state.projects,
+  experiences: state?.experiences,
+  educations: state?.educations,
+  awards: state?.awards,
+  interests: state?.interests,
+  skills: state?.skills.selectedSkills,
+  experienceTitle: state?.title.experienceTitle,
+  skillsTitle: state?.title.skillsTitle,
+  interestsTitle: state?.title.interestsTitle,
+  awardsTitle: state?.title.awardsTitle,
+  educationTitle: state?.title.educationTitle,
+  projectsTitle: state?.title.projectsTitle,
+  selectedDesign: state?.projects.selectedDesign,
+  projects : state?.projects,
   // projects: state.projects.items.map((projectObj) => projectObj.project)
 });
 
