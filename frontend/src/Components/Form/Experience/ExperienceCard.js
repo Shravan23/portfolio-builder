@@ -5,7 +5,7 @@ import React, { useState } from 'react'
 import ExperienceInfo from './ExperienceInfo';
 // import EducationInfo from './EducationInfo';
 
-const ExperienceCard = ({ experience, onRemovePressed, onEditPressed}) => {
+const ExperienceCard = ({ experience, onRemovePressed, onEditPressed }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editedExperience, setEditedExperience] = useState(experience);
   const handleEditClick = () => {
@@ -22,31 +22,28 @@ const ExperienceCard = ({ experience, onRemovePressed, onEditPressed}) => {
     setEditedExperience(experience);
   };
   return (
-    <div className="flex-col rounded-lg shadow-lg p-6 relative w-[60%] row">
+    <div className="card dark:bg-lime-300 dark:text-black bg-light pb-1 pr-1 mb-1 small">
       {
-         <ExperienceInfo experience={experience} isEditing={isEditing} setEditedExperience={setEditedExperience}/>
+        <>
+          <div className={`d-flex justify-content-end ${isEditing ? "d-none" : ""}`}>
+            <button className="bg-transparent" onClick={handleEditClick}>
+              <FontAwesomeIcon className='color-black' icon={faPenToSquare} />
+            </button>
+            <button className="bg-transparent" onClick={() => { onRemovePressed(experience) }}>
+              <FontAwesomeIcon className='color-red' icon={faTrash} />
+            </button>
+          </div>
+          <ExperienceInfo experience={experience} isEditing={isEditing} setEditedExperience={setEditedExperience} />
+        </>
       }
       {isEditing ? (
         <div className='pt-4 items-center'>
-          <button className="bg-black hover:bg-gray-700 text-white font-bold py-2 px-4 rounded mr-2" onClick={handleSaveClick}>
+          <button className="bg-black mx-3 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded mr-2" onClick={handleSaveClick}>
             Save
           </button>
           <button className="bg-black hover:bg-gray-700 text-white font-bold py-2 px-4 rounded mr-2" onClick={handleCancelClick}>Cancel</button>
         </div>
-      ) : (
-        <>
-          <div className="absolute top-2 right-2">
-            <button onClick={handleEditClick}>
-              <FontAwesomeIcon icon={faPenToSquare} />
-            </button>
-          </div>
-          <div className="absolute bottom-2 right-2">
-            <button onClick={()=>{onRemovePressed(experience)}}>
-                <FontAwesomeIcon icon={faTrash} />
-            </button>
-          </div>
-        </>
-      )}
+      ) : ""}
     </div>
   )
 }

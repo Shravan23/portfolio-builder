@@ -1,8 +1,8 @@
 import React from 'react';
 import NewEducationForm from './NewEducationForm';
-import Education from './Education';
+
 import { connect } from 'react-redux';
-import { editEducation, removeEducation } from './actions';
+import { editEducation, removeEducation, createEducation } from './actions';
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import EducationCard from './EducationCard';
@@ -34,6 +34,9 @@ const mapDispatchToProps = dispatch => ({
     onEditPressed: (oldeducation, newEducation) => {
         dispatch(editEducation(oldeducation, newEducation))
     },
+    addEducation : (edu) =>{
+        dispatch(createEducation(edu))
+      }
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(EducationList);

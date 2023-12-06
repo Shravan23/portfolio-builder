@@ -3,7 +3,8 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { GrUpload } from 'react-icons/gr';
 import { parseResumeFromPdf } from "../Components/ResumeParser/parser";
-import './ResumeUploadPage.css'; // Import your CSS file
+import { Link } from 'react-router-dom';
+import './ResumeUploadPage.css'; 
 
 const ResumeUploadPage = () => {
   const navigate = useNavigate();
@@ -76,47 +77,45 @@ const ResumeUploadPage = () => {
   };
 
   return (
-    <div
-      style={{
-        maxWidth: '400px',
-        padding: '20px',
-        borderRadius: '15px',
-        border: '2px solid #00308F',
-        backgroundColor: '#ADD8E6',
-        position: 'relative',
-        top: '10rem',
-        left: '32rem'
-      }}
-    >
-      <h2 style={{ color: '#00308F', marginLeft: '50px' }}>Upload Resume</h2>
-      <input
-        type="file"
-        style={{ display: 'none' }}
-        ref={fileInputRef}
-        onChange={handleFileChange}
-      />
-      <div className="upload-btn-container">
-        <button onClick={handleUploadResume} className="upload-btn">
-          <GrUpload />
-        </button>
+   <div>
+      <div className="resume-container">
+        <h2>What is your preferred method for building your portfolio website?</h2>
       </div>
-      {selectedFile && (
-        <div className="file-info">
-          <p>Selected File: {selectedFile.name}</p>
-          <button onClick={handleRemoveFile} className="action-btn">Remove File</button>
-        </div>
-      )}
 
-      <div style={{ textAlign: 'center', marginBottom: '20px' }}>
-        <button
-          onClick={onImportClick}
-          disabled={!selectedFile}
-          style={{ borderRadius: '15px', padding: '10px 20px', fontSize: '16px' }}
-        >
-          Submit
-        </button>
+      <div className="resume-options-container">
+        <Link to="/PortfolioCard2" style={{ textDecoration: 'none' }}>
+          <div className="resume-upload-card">
+            <h2 style={{ color: '#00308F', marginLeft: '50px' }}>Create Without Resume</h2>
+            <h5 style={{ color: 'black',fontWeight: 'bold', fontSize: '20px', marginTop: '25px' }}>Let us help you build your portfolio website by providing guidance and support at every stage</h5>
+          </div>
+        </Link>
+
+        <div className="resume-upload-card">
+          <h2 style={{ color: '#00308F', marginLeft: '50px' }}>Upload Resume</h2>
+          <h5 style={{ fontWeight: 'bold', fontSize: '19px' }}>Please upload your existing resume (only PDF accepted)</h5>
+          <input type="file" style={{ display: 'none' }} ref={fileInputRef} onChange={handleFileChange} />
+          <div className="upload-btn-container" style={{maxWidth:'23%', marginLeft:'118px'}}>
+            <button onClick={handleUploadResume} className="upload-btn" style={{ height: '45px', color: 'white'}}>
+              <GrUpload />
+            </button>
+          </div>
+          {selectedFile && (
+            <div className="file-info">
+              <p>Selected File: {selectedFile.name}</p>
+              <button onClick={handleRemoveFile} className="action-btn">
+                Remove File
+              </button>
+            </div>
+          )}
+          <div style={{ textAlign: 'center', marginBottom: '60px' }}>
+            <button onClick={onImportClick} disabled={!selectedFile} className="submit-btn">
+              Submit
+            </button>
+          </div>
+        </div>
       </div>
     </div>
+  
   );
 };
 

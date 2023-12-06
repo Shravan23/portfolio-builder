@@ -84,6 +84,10 @@ html,body,#root,.app{
 
 .p-3 {
   padding: 0.75rem;
+  background: white;
+  color: black;
+  font-size: large;
+  font-weight: 500;
 }
 
 .text-xl {
@@ -134,11 +138,12 @@ ol, ul, menu {
 }
 
 .h-\[85vh\] {
-  height: 85vh;
+  height: 200vh;
 }
 
 .w-full {
   width: 100%;
+  background: white;
 }
 body {
   margin: 0;
@@ -156,12 +161,133 @@ code {
     monospace;
 }
 
-.header-top-logout {
-  position: relative;
-  left: 90rem;
-  top: 10px;
+/* button{
+  color: blue;
+  background-color: white;
 }
+
+
+button:hover {
+color:lightblue;
+} */
 
 .header-button-logout button{
   border-radius: 5px;
 }
+
+.color-black{
+  color: black;
+}
+
+.color-red{
+  color: red;
+}
+
+
+
+/* CSS */
+button {
+  appearance: none;
+  background-color: transparent;
+  border: 2px solid #1A1A1A;
+  border-radius: 15px;
+  box-sizing: border-box;
+  color: #3B3B3B;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Roobert,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+  font-size: 16px;
+  font-weight: 600;
+  line-height: normal;
+  margin: 0;
+  /* min-height: 60px; */
+  min-width: 0;
+  outline: none;
+  padding: 16px 24px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: 60%;
+  will-change: transform;
+}
+
+button:disabled {
+  pointer-events: none;
+}
+
+button:hover {
+  color: #fff;
+  background-color: #1A1A1A;
+  box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+  transform: translateY(-2px);
+}
+
+button:active {
+  box-shadow: none;
+  transform: translateY(0);
+}
+
+/* Your existing Tailwind CSS class */
+.bg-red-500 {
+  background-color: #e3342f;
+}
+
+.text-white {
+  color: #ffffff;
+}
+
+.p-2 {
+  padding: 0.5rem;
+}
+
+.rounded-full {
+  border-radius: 9999px;
+}
+
+/* Merged styles with your provided button class */
+.bg-red-500.text-white.p-2.rounded-full {
+  appearance: none;
+  background-color: transparent;
+  border: 2px solid #1A1A1A;
+  border-radius: 15px;
+  box-sizing: border-box;
+  color: #3B3B3B;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Roobert, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 16px;
+  font-weight: 600;
+  line-height: normal;
+  margin: 0;
+  min-width: 0;
+  outline: none;
+  padding: 16px 24px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: 60%;
+  will-change: transform;
+}
+
+.bg-red-500.text-white.p-2.rounded-full:disabled {
+  pointer-events: none;
+}
+
+.bg-red-500.text-white.p-2.rounded-full:hover {
+  color: #fff;
+  background-color: #1A1A1A;
+  box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+  transform: translateY(-2px);
+}
+
+.bg-red-500.text-white.p-2.rounded-full:active {
+  box-shadow: none;
+  transform: translateY(0);
+}
+

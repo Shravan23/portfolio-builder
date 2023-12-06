@@ -1,13 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import NewExperienceForm from "./NewExperienceForm";
 import Experience from "./Experience";
 import { connect, useSelector } from "react-redux";
-import { editExperience, removeExperience } from "./actions";
+import { editExperience, removeExperience, createExperience } from "./actions";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ExperienceCard from "./ExperienceCard";
 
-const ExperienceList = ({ experiences = [], onRemovePressed, onEditPressed }) => {
+const ExperienceList = ({ experiences=[], onRemovePressed, onEditPressed }) => {
   return (
     <div>
       <NewExperienceForm />
@@ -18,16 +18,18 @@ const ExperienceList = ({ experiences = [], onRemovePressed, onEditPressed }) =>
           //   experience={experience.experience}
           //   onRemovePressed={onRemovePressed}
           // />
-          <ExperienceCard experience={experience.experience} onRemovePressed={onRemovePressed} onEditPressed={onEditPressed}/>
+          <ExperienceCard experience={experience.experience} onRemovePressed={onRemovePressed} onEditPressed={onEditPressed} />
         ))}
       </div>
     </div>
   );
 };
 
-const mapStateToProps = (state) => ({
-  experiences: state.experiences,
-});
+const mapStateToProps = (state) => {
+  return ({
+    experiences: state.experiences,
+  })
+};
 
 const mapDispatchToProps = (dispatch) => ({
   onRemovePressed: (experience) => {
@@ -40,7 +42,7 @@ const mapDispatchToProps = (dispatch) => ({
   },
   onEditPressed: (oldExperience, newExperience) => {
     dispatch(editExperience(oldExperience, newExperience));
-  }
+  },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ExperienceList);

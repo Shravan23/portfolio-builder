@@ -7,13 +7,14 @@ import Project from "./Project";
 import NewProject from "./NewProject";
 
 const ProjectList = ({ projects = [], onRemovePressed }) => {
+  console.log(projects)
   return (
     <div>
       <NewProject/>
       <div className="container mb-3">
-        {projects.items.map((project) => (
+        {projects?.map((project) => (
           <Project
-            project={project.project}
+            project={project.projects}
             onRemovePressed={onRemovePressed}
           />
         ))}

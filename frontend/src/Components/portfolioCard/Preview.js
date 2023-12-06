@@ -55,11 +55,11 @@ const Preview = ({
         (experience) => `
       <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
         <div class="flex-grow-1">
-          <h3 class="mb-0">${experience.experience.position}</h3>
+          <h3 class="mb-0">${experience.experience.jobTitle}</h3>
           <div class="subheading mb-3">${
             experience.experience.company
           }</div>
-          <p>${experience.experience.desc}</p>
+          <p>${experience.experience.descriptions}</p>
         </div>
         <div class="flex-shrink-0"><span class="text-primary">${
           experience.experience.start
@@ -93,11 +93,11 @@ const Preview = ({
           (education) => `
         <div class="d-flex flex-column flex-md-row justify-content-between">
           <div class="flex-grow-1">
-            <h3 class="mb-0">${education.education.university}</h3>
+            <h3 class="mb-0">${education.education.school}</h3>
             <div class="subheading mb-3">${
               education.education.degree
             }</div>
-            <p>GPA: ${education.education.gpa}</p>
+            <p ${education.education.gpa? "" : "d-none"}>GPA: ${education.education.gpa}</p>
           </div>
           <div class="flex-shrink-0"><span class="text-primary">${
             education.education.start

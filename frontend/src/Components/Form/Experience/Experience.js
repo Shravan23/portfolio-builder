@@ -25,7 +25,7 @@ const Experience = ({ experience, onRemovePressed }) => {
                     </div>
                 </div>
                 <div className="flex">
-                    <div>Description:  {experience.desc}</div>
+                    <div>Description:  {experience.description}</div>
                     {/* <div className="w-2/3">{experience.desc}</div> */}
                 </div>
             </div>

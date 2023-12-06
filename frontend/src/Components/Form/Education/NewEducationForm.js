@@ -44,13 +44,12 @@ const NewEducationForm = ({ educations = [], onCreatePressed }) => {
 
   return (
     <div
-      className={`border rounded ${
-        allFieldsFilled === 5
+      className={`border rounded ${allFieldsFilled === 5
           ? "border-green-500"
           : allFieldsFilled === 0
-          ? ""
-          : "border-yellow-500"
-      } p-3 m-2`}
+            ? ""
+            : "border-yellow-500"
+        } p-3 m-2`}
     >
       <input
         className="dark:bg-zinc-800 form-control form-control-sm mb-2 mr-2 border py-1 px-2 rounded-sm text-sm capitalize outline-gray-200"
@@ -97,7 +96,7 @@ const NewEducationForm = ({ educations = [], onCreatePressed }) => {
         </div>
       </div>
 
-      <div className="text-right">
+      <div className="text-right" style={{maxWidth: '58px'}}>
         <button
           className="btn btn-success btn-sm rounded-circle cursor-pointer rounded-full w-7 h-7 bg-green-400 text-white"
           disabled={
@@ -109,7 +108,7 @@ const NewEducationForm = ({ educations = [], onCreatePressed }) => {
           }
           onClick={() => {
             onCreatePressed({
-              university,
+              school: university,
               degree,
               gpa,
               start,
