@@ -95,7 +95,7 @@ const ResumeUploadPage = () => {
           <h5 style={{ fontWeight: 'bold', fontSize: '19px' }}>Please upload your existing resume (only PDF accepted)</h5>
           <input type="file" style={{ display: 'none' }} ref={fileInputRef} onChange={handleFileChange} />
           <div className="upload-btn-container">
-            <button onClick={handleUploadResume} className="upload-btn">
+            <button onClick={handleUploadResume} className="upload-btn" style={{ height: '45px', width: '32px', color: 'white'}}>
               <GrUpload />
             </button>
           </div>
