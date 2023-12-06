@@ -57,7 +57,7 @@ const Code = ({
                       <div class="subheading mb-3">${
                         experience.experience.company
                       }</div>
-                      <p>${experience.experience.description}</p>
+                      <p>${experience.experience.descriptions}</p>
                     </div>
                     <div class="flex-shrink-0"><span class="text-primary">${
                       experience.experience.start
