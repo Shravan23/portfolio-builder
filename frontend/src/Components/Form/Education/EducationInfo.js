@@ -2,7 +2,7 @@ import moment from 'moment';
 import React from 'react';
 
 const EducationInfo = ({ education, isEditing, setEditedEducation }) => {
-    const { degree, end, gpa, start, university } = education;
+    const { degree, end, gpa, start, school } = education;
     return (
         <div className="rounded-lg gap-2 flex-col relative">
             <div className="mb-2">
@@ -11,11 +11,11 @@ const EducationInfo = ({ education, isEditing, setEditedEducation }) => {
                     <input
                         type="text"
                         className={`py-2 px-3 w-1/2 ${isEditing ? 'border border-gray-400' : 'border-none'} rounded-lg`}
-                        defaultValue={university}
-                        onChange={(e) => setEditedEducation((prev) => ({ ...prev, university: e.target.value }))}
+                        defaultValue={school}
+                        onChange={(e) => setEditedEducation((prev) => ({ ...prev, school: e.target.value }))}
                     />
                 ) : (
-                    <h2 className="text-2xl font-semibold">{university.length > 20 ? `${university.slice(0,20)}...` : university}</h2>
+                    <h2 className="text-2xl font-semibold">{school.length > 50 ? `${school.slice(0,50)}...` : school}</h2>
                 )}
             </div>
             <div className='flex justify-between'>
@@ -54,10 +54,9 @@ const EducationInfo = ({ education, isEditing, setEditedEducation }) => {
                     />
                 ) : (
                     <div className={`max-w-xs overflow-hidden whitespace-nowrap ${isEditing ? 'overflow-visible' : 'overflow-ellipsis'}`}>
-                        {degree.length > 30 ? `${degree.slice(0, 30)}...` : degree}
+                        {degree.length > 50 ? `${degree.slice(0, 50)}...` : degree}
                     </div>
                 )}
-                -
                 <div className="mb-2">
                     {isEditing ? (
                         <input
@@ -66,7 +65,7 @@ const EducationInfo = ({ education, isEditing, setEditedEducation }) => {
                             defaultValue={gpa}
                             onChange={(e) => setEditedEducation((prev) => ({ ...prev, gpa: e.target.value }))}
                         />
-                    ) : (<p>{gpa} CGPA</p>)}
+                    ) : (<p className={`${gpa? "" : "d-none"}`}>{gpa}- CGPA</p>)}
                 </div>
             </div>
         </div>

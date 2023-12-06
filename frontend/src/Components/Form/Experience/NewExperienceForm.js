@@ -41,15 +41,14 @@ const NewExperienceForm = ({ experiences = [], onCreatePressed }) => {
 
   return (
     <div
-      className={`border rounded ${
-        allFieldsFilled === 5
+      className={`border rounded ${allFieldsFilled === 5
           ? "border-green-500"
           : allFieldsFilled === 0
-          ? ""
-          : "border-yellow-500"
-      } p-3 m-2`}
+            ? ""
+            : "border-yellow-500"
+        } p-3 m-2`}
     >
-      <input       
+      <input
         className="dark:bg-zinc-800 form-control form-control-sm mb-2 border py-1 px-2 rounded-sm text-sm capitalize outline-gray-200"
         type="text"
         placeholder="Position"
@@ -121,9 +120,9 @@ const NewExperienceForm = ({ experiences = [], onCreatePressed }) => {
               console.log("hello");
             }
             onCreatePressed({
-              position,
+              jobTitle: position,
               company,
-              desc,
+              descriptions: desc,
               start,
               end,
               presentJob,

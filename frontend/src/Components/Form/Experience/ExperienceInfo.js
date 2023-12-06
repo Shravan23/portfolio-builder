@@ -2,7 +2,11 @@ import moment from 'moment';
 import React from 'react';
 
 const ExperienceInfo = ({ experience, isEditing, setEditedExperience }) => {
-    const { company, end, desc, start, position } = experience;
+
+    console.log(experience)
+    const { company, end, descriptions, start, jobTitle } = experience;
+
+    console.log(experience)
     return (
         <div className="rounded-lg gap-2 flex-col relative">
             <div className="mb-2">
@@ -15,7 +19,7 @@ const ExperienceInfo = ({ experience, isEditing, setEditedExperience }) => {
                         onChange={(e) => setEditedExperience((prev) => ({ ...prev, company: e.target.value }))}
                     />
                 ) : (
-                    <h2 className="text-2xl font-semibold">{company.length > 20 ? `${company.slice(0, 20)}...` : company}</h2>
+                    <h2 className="text-2xl font-semibold">{company.length > 30 ? `${company.slice(0, 30)}...` : company}</h2>
                 )}
             </div>
             <div className='flex justify-between'>
@@ -49,12 +53,12 @@ const ExperienceInfo = ({ experience, isEditing, setEditedExperience }) => {
                     <input
                         type="text"
                         className={`py-2 px-3 w-1/2 ${isEditing ? 'border border-gray-400' : 'border-none'} rounded-lg`}
-                        defaultValue={desc}
-                        onChange={(e) => setEditedExperience((prev) => ({ ...prev, desc: e.target.value }))}
+                        defaultValue={descriptions}
+                        onChange={(e) => setEditedExperience((prev) => ({ ...prev, descriptions: e.target.value }))}
                     />
                 ) : (
                     <div className={`max-w-xs overflow-hidden whitespace-nowrap ${isEditing ? 'overflow-visible' : 'overflow-ellipsis'}`}>
-                        {desc.length > 30 ? `${desc.slice(0, 30)}...` : desc}
+                        {descriptions.length > 50 ? `${descriptions.slice(0, 50)}...` : descriptions}
 
                     </div>
                 )}
@@ -64,10 +68,10 @@ const ExperienceInfo = ({ experience, isEditing, setEditedExperience }) => {
                         <input
                             type="text"
                             className={`py-2 px-3 w-1/2 ${isEditing ? 'border border-gray-400' : 'border-none'} rounded-lg`}
-                            defaultValue={position}
-                            onChange={(e) => setEditedExperience((prev) => ({ ...prev, position: e.target.value }))}
+                            defaultValue={jobTitle}
+                            onChange={(e) => setEditedExperience((prev) => ({ ...prev, jobTitle: e.target.value }))}
                         />
-                    ) : (<p>{position}</p>)}
+                    ) : (<p>{jobTitle}</p>)}
                 </div>
             </div>
         </div>

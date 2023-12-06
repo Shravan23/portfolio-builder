@@ -166,6 +166,20 @@ button{
   background-color: white;
 }
 
+
 button:hover {
 color:lightblue;
 }
+
+.header-button-logout button{
+  border-radius: 5px;
+}
+
+.color-black{
+  color: black;
+}
+
+.color-red{
+  color: red;
+}
+

@@ -6,10 +6,16 @@ export const UPDATE_AWARDS = 'UPDATE_AWARDS';
 export const UPDATE_EDUCATION = 'UPDATE_EDUCATION';
 export const UPDATE_PROJECTS = 'UPDATE_PROJECTS';
 export const EDIT_EXPERIENCE = 'EDIT_EXPERIENCE';
+export const SET_INITIAL_EXPERIENCE = 'SET_INITIAL_EXPERIENCE';
 
 export const createExperience = experience => ({
     type: CREATE_EXPERIENCE,
     payload: {experience}
+});
+
+export const createInitialExperience = experience => ({
+  type: SET_INITIAL_EXPERIENCE,
+  payload: {experience}
 });
 
 export const REMOVE_EXPERIENCE = 'REMOVE_EXPERIENCE';

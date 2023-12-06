@@ -6,13 +6,13 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 const NewProjectForm = ({ onCreatePressed,onChangeDesign }) => {
   const [projectData, setProjectData] = useState({
-    name: "",
-    description: "",
+    project: "",
+    descriptions: "",
     image: "",
     techStack: "",
     websiteLink: "",
     githubLink: "",
-    timeline: "",
+    date: "",
     guidedByProfessor: false,
     professorName: "", // New field for professor's name
     isClubProject: false, // New field for club project
@@ -38,18 +38,18 @@ const NewProjectForm = ({ onCreatePressed,onChangeDesign }) => {
 
   const handleSubmit = () => {
     // Create a new project object and dispatch the action
-    const newProject = { project: projectData };
+    const newProject = { projects: projectData };
     onCreatePressed(newProject);
 
     // Clear the form fields
     setProjectData({
-      name: "",
-      description: "",
+      project: "",
+      descriptions: "",
       image: "",
       techStack: "",
       websiteLink: "",
       githubLink: "",
-      timeline: "",
+      date: "",
       guidedByProfessor: false,
       professorName: "", // New field for professor's name
       isClubProject: false, // New field for club project
@@ -64,16 +64,16 @@ const NewProjectForm = ({ onCreatePressed,onChangeDesign }) => {
       <input
         type="text"
         className="dark:bg-zinc-800 form-control form-control-sm mb-2 border py-1 px-2 rounded-sm text-sm capitalize outline-gray-200"
-        name="name"
+        name="project"
         placeholder="Project Name"
-        value={projectData.name}
+        value={projectData.project}
         onChange={handleChange}
       />
       <textarea
         className="dark:bg-zinc-800 form-control form-control-sm mb-2 border py-1 px-2 rounded-sm text-sm capitalize outline-gray-200"
-        name="description"
+        name="descriptions"
         placeholder="Project Description"
-        value={projectData.description}
+        value={projectData.descriptions}
         onChange={handleChange}
       />
       <input
@@ -111,9 +111,9 @@ const NewProjectForm = ({ onCreatePressed,onChangeDesign }) => {
       <input
         type="text"
         className="dark:bg-zinc-800 form-control form-control-sm mb-2 border py-1 px-2 rounded-sm text-sm capitalize outline-gray-200"
-        name="timeline"
+        name="date"
         placeholder="Project Timeline"
-        value={projectData.timeline}
+        value={projectData.date}
         onChange={handleChange}
       />
 
@@ -121,7 +121,7 @@ const NewProjectForm = ({ onCreatePressed,onChangeDesign }) => {
         <button
           className="btn btn-success btn-sm rounded-circle"
           onClick={handleSubmit}
-          disabled={!projectData.name || !projectData.description}
+          disabled={!projectData.project || !projectData.descriptions}
         >
           <FontAwesomeIcon icon={faPlus} />
         </button>

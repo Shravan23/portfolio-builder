@@ -1,35 +1,44 @@
-import { CREATE_EXPERIENCE, REMOVE_EXPERIENCE,UPDATE_EXPERIENCE,UPDATE_SKILLS,UPDATE_AWARDS,UPDATE_INTERESTS,UPDATE_EDUCATION,UPDATE_PROJECTS, EDIT_EXPERIENCE } from "./actions";
+import { CREATE_EXPERIENCE, SET_INITIAL_EXPERIENCE, REMOVE_EXPERIENCE, UPDATE_EXPERIENCE, UPDATE_SKILLS, UPDATE_AWARDS, UPDATE_INTERESTS, UPDATE_EDUCATION, UPDATE_PROJECTS, EDIT_EXPERIENCE } from "./actions";
 
-const experiences = (state=[], action) =>{
-    const {type, payload} = action;
+const experiences = (state = [], action) => {
+  const { type, payload } = action;
 
-    switch(type){
-        case CREATE_EXPERIENCE:{
-            const {experience} = payload;
-            const newExperience = {
-                experience,
-            };
-            return state.concat(newExperience);
-        }
-        case REMOVE_EXPERIENCE: {
-            const {experience} = payload;
-            return state.filter(exp => exp.experience.position !== experience.position);
-        }
-        case EDIT_EXPERIENCE: {
-          const {oldExperience, newExperience} = payload;
-          return state.map((exp) => {
-            if ((exp.experience.position === oldExperience.position) && (exp.experience.company === oldExperience.company)) {
-              return {
-                ...exp,
-                experience: newExperience,
-              };
-            }
-            return exp;
-          });
-        }
-        default: 
-            return state;
+  switch (type) {
+    case SET_INITIAL_EXPERIENCE:
+      const { experience } = payload;
+      return experience;
+
+    case CREATE_EXPERIENCE: {
+      const { experience } = payload;
+      const newExperience = {
+        experience,
+      };
+      return state.concat(newExperience);
     }
+    
+    case REMOVE_EXPERIENCE: {
+      const { experience } = payload;
+
+      return state.filter(exp => {
+        return exp.experience.jobTitle != experience.jobTitle
+      });
+    }
+
+    case EDIT_EXPERIENCE: {
+      const { oldExperience, newExperience } = payload;
+      return state.map((exp) => {
+        if ((exp.experience.position === oldExperience.position) && (exp.experience.company === oldExperience.company)) {
+          return {
+            ...exp,
+            experience: newExperience,
+          };
+        }
+        return exp;
+      });
+    }
+    default:
+      return state;
+  }
 }
 
 const initialState = {
@@ -38,11 +47,11 @@ const initialState = {
   interestsTitle: "Interests",
   awardsTitle: "Awards",
   educationTitle: "Education",
-  projectsTitle:"Projects"
+  projectsTitle: "Projects"
 };
 
 export const titlesReducer = (state = initialState, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case UPDATE_EXPERIENCE:
       return {
         ...state,
@@ -68,7 +77,7 @@ export const titlesReducer = (state = initialState, action) => {
         ...state,
         educationTitle: action.payload
       };
-      case UPDATE_PROJECTS:
+    case UPDATE_PROJECTS:
       return {
         ...state,
         projectsTitle: action.payload

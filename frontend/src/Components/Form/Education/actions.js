@@ -1,7 +1,13 @@
 export const CREATE_EDUCATION = 'CREATE_EDUCATION';
+export const SET_INITIAL_EDUCATION = "SET_INITIAL_EDUCATION"
 
 export const createEducation = education => ({
     type: CREATE_EDUCATION,
+    payload: {education}
+});
+
+export const setInitialEducation = education => ({
+    type: SET_INITIAL_EDUCATION,
     payload: {education}
 });
 

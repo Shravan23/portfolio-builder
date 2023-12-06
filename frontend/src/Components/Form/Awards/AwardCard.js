@@ -33,30 +33,29 @@ const AwardCard = ({ award, onRemovePressed, onEditPressed }) => {
                         />
                     </>
                 ) : (
-                    <div className="col">{award.award}</div>
+                    <>
+                        <div className={`d-flex justify-content-end ${isEditing ? "d-none" : ""}`}>
+                            <button className="bg-transparent" onClick={handleEditClick}>
+                                <FontAwesomeIcon className='color-black' icon={faPenToSquare} />
+                            </button>
+
+
+                            <button className="bg-transparent" onClick={() => { onRemovePressed(award) }}>
+                                <FontAwesomeIcon className='color-red' icon={faTrash} />
+                            </button>
+                        </div>
+                        <div className="col fw-bold mb-3">{award.award}</div>
+                    </>
                 )
             }
             {isEditing ? (
                 <div className='pt-4 items-center'>
-                    <button className="bg-black hover:bg-gray-700 text-white font-bold py-2 px-4 rounded mr-2" onClick={handleSaveClick}>
+                    <button className="bg-black me-2 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded mr-2" onClick={handleSaveClick}>
                         Save
                     </button>
                     <button className="bg-black hover:bg-gray-700 text-white font-bold py-2 px-4 rounded mr-2" onClick={handleCancelClick}>Cancel</button>
                 </div>
-            ) : (
-                <>
-                    <div className="absolute top-2 right-2">
-                        <button onClick={handleEditClick}>
-                            <FontAwesomeIcon icon={faPenToSquare} />
-                        </button>
-                    </div>
-                    <div className="absolute bottom-2 right-2">
-                        <button onClick={() => { onRemovePressed(award) }}>
-                            <FontAwesomeIcon icon={faTrash} />
-                        </button>
-                    </div>
-                </>
-            )}
+            ) : ""}
         </div >
     );
 }
