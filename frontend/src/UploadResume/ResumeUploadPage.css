@@ -1,48 +1,71 @@
-.resume-upload-container {
-    max-width: 400px;
-    padding: 20px;
-    border-radius: 15px;
-    border: 2px solid #00308F;
-    background-color: #ADD8E6;
-    position: relative;
-    top: 10rem;
-    left: 32rem;
-    
-  }
-  
-  @media (max-width: 768px) {
-    .resume-upload-container {
-      max-width: 100%;
-      left: auto;
-      right: auto;
-      top: initial;
-    }
+  .action-btn {
+  border-radius: 15px;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: blue;
+  color: white;
+  border: none;
   }
 
-  .upload-btn-container {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .upload-btn {
-    border-radius: 15px;
-    padding: 10px 20px;
-    font-size: 16px;
-  }
-  
-  .file-info {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .action-btn {
-    border-radius: 15px;
-    padding: 10px 20px;
-    font-size: 16px;
-  }
-  
-  .submit-btn-container {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
+.resume-container {
+  color: #00308F;
+  text-align: center;
+  position: relative;
+  top: 11rem;
+}
+
+.resume-options-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.resume-upload-card {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  border-radius: 15px;
+  border: 2px solid #00308F;
+  background-color: white;
+  width: 370px;
+  height: 330px;
+  max-height: 600px;
+  margin-left: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.resume-upload-card:hover {
+  transform: translateY(-5px) translateZ(5px);
+}
+
+.upload-btn-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.upload-btn {
+  background-color: blue;
+  border-radius: 5px;
+  align-items: center;
+  display: flex;
+}
+
+.file-info {
+  text-align: center;
+  margin-bottom: 20px;
+  color: blue;
+}
+
+.submit-btn {
+  border-radius: 6px;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: blue;
+  color: white;
+  border: none;
+}
+
